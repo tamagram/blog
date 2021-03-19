@@ -15,9 +15,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Layout>
-        <Route exact path="/" component={Summary}></Route>
-        <Route path="/about" component={About}></Route>
-        <Route exact path="/article/:articleDirname" component={Article}></Route>
+        <Route exact path="/blog" component={Summary}></Route>
+        <Route path="/blog/about" component={About}></Route>
+        <Route exact path="/blog/article/:articleDirname" component={Article}></Route>
       </Layout>
     </Router>
   </React.StrictMode>,

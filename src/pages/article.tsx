@@ -44,8 +44,7 @@ export default class Article extends React.Component {
                 <h1>{this.articleDirname.split("_")[1]}</h1>
                 <h5>{this.articleDirname.split("_")[0]}</h5>
                 <ReactMarkdown>
-                    {"---"}
-                    {this.state.data === undefined ? "___Loading...___" : this.state.data}
+                    {this.state.data === undefined ? "___Loading...___" : "---\n" + this.state.data}
                 </ReactMarkdown>
             </Container>
         );
