@@ -12,7 +12,7 @@ export default class Article extends React.Component {
 
     async fetchMDdata(articleDirname: string) {
         try {
-            return (await axios.get("https://raw.githubusercontent.com/tamagram/weblog/master/src/articles/" + articleDirname + "/index.mdx"))
+            return (await axios.get("https://raw.githubusercontent.com/tamagram/blog/master/src/articles/" + articleDirname + "/index.md"))
         } catch (error) {
             throw error.response.status
         }

@@ -17,7 +17,7 @@ export default class Summary extends React.Component {
                     {articleDirNames.map((articleDirname) => {
                         return <Card>
                             <Link to={"/article/" + articleDirname}>
-                                <Card.Img variant="top" src={"https://raw.githubusercontent.com/tamagram/weblog/master/src/articles/" + articleDirname + "/img/cardImage.png"}></Card.Img>
+                                <Card.Img variant="top" src={"https://raw.githubusercontent.com/tamagram/blog/master/src/articles/" + articleDirname + "/img/cardImage.png"}></Card.Img>
                                 <Card.Body>
                                     <Card.Title>{articleDirname.split("_")[1]}</Card.Title>
                                     {/* <Card.Text>
