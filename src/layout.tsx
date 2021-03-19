@@ -9,7 +9,7 @@ export default class Layout extends React.Component {
         return (
             <>
                 <Navbar bg="light" expand="lg">
-                    <Navbar.Brand><Link to="/blog">tamagram's weblog</Link></Navbar.Brand>
+                    <Navbar.Brand><Link to="/blog/">tamagram's weblog</Link></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">

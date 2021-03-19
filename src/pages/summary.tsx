@@ -16,7 +16,7 @@ export default class Summary extends React.Component {
                 <CardColumns id="board">
                     {articleDirNames.map((articleDirname) => {
                         return <Card>
-                            <Link to={"blog/article/" + articleDirname}>
+                            <Link to={"/blog/article/" + articleDirname}>
                                 <Card.Img variant="top" src={"https://raw.githubusercontent.com/tamagram/blog/master/src/articles/" + articleDirname + "/img/cardImage.png"}></Card.Img>
                                 <Card.Body>
                                     <Card.Title>{articleDirname.split("_")[1]}</Card.Title>
