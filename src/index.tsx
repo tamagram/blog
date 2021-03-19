@@ -3,10 +3,23 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Layout from "./layout";
+import Summary from "./pages/summary";
+import About from "./pages/about";
+import Article from "./pages/article";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <Layout>
+        <Route exact path="/" component={Summary}></Route>
+        <Route path="/about" component={About}></Route>
+        <Route exact path="/article/:articleDirname" component={Article}></Route>
+      </Layout>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
