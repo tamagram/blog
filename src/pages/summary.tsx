@@ -6,7 +6,8 @@ import { Card, CardColumns, Container } from "react-bootstrap";
 const articleDirNames: string[] = [
     // ここに新しい記事のdirectorynameを追加
     "2021-3-17_ブログを作りました",
-    "2021-4-1_一年間を振り返る"
+    "2021-4-1_一年間を振り返る",
+    "2021-4-8_Python3で仮想環境を立ち上げる"
 ];
 
 export default class Summary extends React.Component {
