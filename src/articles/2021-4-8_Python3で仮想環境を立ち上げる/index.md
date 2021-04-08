@@ -2,9 +2,8 @@ DiscordBotを作るときに忘れてしまっていたので、今後同じよ�
 
 ## 対象
 
-|OS|Windows|
-|-|-|
-|エディタ|VScode|
+OS: Windows
+エディタ: VScode
 
 ## Pyhtonインストール
 まずPythonをインストールしましょう。
@@ -52,6 +51,6 @@ VScode上で`CTRL + SHIFT + P`を押し、`Select Interpreter`を選択、そこ
 
 コマンド `pip install numpy`
 
-![](https://raw.githubusercontent.com/tamagram/blog/master/sr/articles/2021-4-8_Python3%E3%81%A7%E4%BB%AE%E6%83%B3%E7%92%B0%E5%A2%83%E3%82%92%E7%AB%8B%E3%81%A1%E4%B8%8A%E3%81%92%E3%82%8B/img/module.png)
+![](https://raw.githubusercontent.com/tamagram/blog/master/src/articles/2021-4-8_Python3%E3%81%A7%E4%BB%AE%E6%83%B3%E7%92%B0%E5%A2%83%E3%82%92%E7%AB%8B%E3%81%A1%E4%B8%8A%E3%81%92%E3%82%8B/img/module.png)
 
 こちらも確認できました。
