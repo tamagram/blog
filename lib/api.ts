@@ -22,6 +22,7 @@ export const getPostBySlug = (slug: string, fields: string[] = []): POST => {
         title: slug,
         tags: ["none"],
         content: 'none',
+        htmlcontent: 'none'
     }
 
     fields.forEach((field) => {

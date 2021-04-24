@@ -4,4 +4,5 @@ export interface POST {
     title: string
     tags: string[]
     content: string
+    htmlcontent: string
 }

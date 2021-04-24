@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { POST } from '../types/Types'
 
-const Post: React.FC<POST> = ({ title,date }) => {
+const Post: React.FC<POST> = ({ title, date }) => {
     return (
         <div>
             <span>{date}</span>

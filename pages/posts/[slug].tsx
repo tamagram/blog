@@ -3,8 +3,9 @@ import Layout from '../../components/Layout'
 import { getAllPosts, getAllPostsSlug, getPostData } from '../../lib/api'
 import { POST } from '../../types/Types'
 import { GetStaticProps, GetStaticPaths } from 'next'
+import { markdownToHtml } from '../../lib/markdown'
 
-const PostDetail: React.FC<POST> = ({ title, content, tags }) => {
+const PostDetail: React.FC<POST> = ({ title, tags, htmlcontent }) => {
     return (
         <Layout title={title}>
             <div className="flex">
@@ -14,7 +15,7 @@ const PostDetail: React.FC<POST> = ({ title, content, tags }) => {
                     {tag}
                 </button>))}
             </div>
-            <p>{content}</p>
+            <div dangerouslySetInnerHTML={{__html: htmlcontent}} />
         </Layout>
     )
 }
@@ -33,9 +34,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 // 1ページづつ作成
 export const getStaticProps: GetStaticProps = async (ctx) => {
     const post = getPostData(ctx.params.slug as string)
+    const htmlcontent = await markdownToHtml(post.content)
     return {
         props: {
             ...post,
+            htmlcontent
         },
     }
 }
