@@ -8,7 +8,7 @@ const PostDetail: React.FC<POST> = ({ title, content, tags }) => {
     return (
         <Layout title={title}>
             <div className="flex">
-                {tags && tags.map((tag) => (<button
+                {tags && tags.map((tag) => (<button key={'tag-' + tag}
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-5"
                 >
                     {tag}
