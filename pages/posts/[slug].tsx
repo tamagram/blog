@@ -3,18 +3,25 @@ import Layout from '../../components/Layout'
 import { getAllPosts, getAllPostsSlug, getPostData } from '../../lib/api'
 import { POST } from '../../types/Types'
 import { GetStaticProps, GetStaticPaths } from 'next'
+import ReactMarkdown from 'react-markdown'
+import gfm from 'remark-gfm'
+import 'github-markdown-css'
 
 const PostDetail: React.FC<POST> = ({ title, content, tags }) => {
     return (
         <Layout title={title}>
-            <div className="flex">
-                {tags && tags.map((tag) => (<button key={'tag-' + tag}
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-5"
-                >
-                    {tag}
-                </button>))}
+            <div className='post'>
+                <div className="tags">
+                    {tags && tags.map((tag) => (<li key={'tag-' + tag}
+                        className="card-tag"
+                    >
+                        {tag}
+                    </li>))}
+                </div>
+                <div className='markdown-body'>
+                    <ReactMarkdown remarkPlugins={[gfm]}>{content}</ReactMarkdown>
+                </div>
             </div>
-            <p>{content}</p>
         </Layout>
     )
 }
