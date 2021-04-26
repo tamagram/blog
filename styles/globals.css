@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat+Subrayada");
+@import url('https://fonts.googleapis.com/css?family=Montserrat+Subrayada');
 
 * {
   margin: 0;
@@ -37,7 +37,7 @@ nav {
   color: #35c8d5;
   text-decoration: none;
   font-size: 100%;
-  font-family: "Montserrat Subrayada", sans-serif;
+  font-family: 'Montserrat Subrayada', sans-serif;
 }
 
 .container {
@@ -61,11 +61,11 @@ main {
   background-color: #505663;
   color: #ffffff;
 }
-main .post .tags{
+main .post .tags {
   display: flex;
   list-style-type: none;
 }
-main .post .tags li{
+main .post .tags li {
   padding: 5px;
 }
 
@@ -101,20 +101,37 @@ footer {
   display: flex;
   justify-content: space-between;
   color: #44c8cd;
-  padding: 0 ;
+  padding: 0;
 }
-footer a{
+footer a {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  color: #44c8cd; 
+  color: #44c8cd;
   text-decoration: none;
 }
-footer div{
+footer div {
   display: flex;
   color: #000000;
 }
-footer img{
+footer img {
   width: 70%;
   height: 70%;
+}
+
+/* Markdown */
+.markdown-body{
+  color: #ffffff!important;
+}
+.markdown-body a{
+  color: #35c8d5!important;
+}
+.markdown-body code{
+  background-color: #313540!important;
+}
+.markdown-body table{
+  color: #000000;
+}
+.markdown-body blockquote{
+  color: #dfe2e5!important;
 }
