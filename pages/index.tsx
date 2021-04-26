@@ -11,8 +11,9 @@ interface STATICPROPS {
 const Blog: React.FC<STATICPROPS> = ({ posts }) => {
   return (
     <Layout title="Blog">
-      <p className="text-4xl mb-10">Blog</p>
-      <ul>{posts && posts.map((post) => <Post key={post.title}{...post} />)}</ul>
+      <div className="container">
+        {posts && posts.map((post) => <Post key={post.title}{...post} />)}
+      </div>
     </Layout>
   )
 }
