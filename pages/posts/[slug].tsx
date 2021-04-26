@@ -11,6 +11,7 @@ const PostDetail: React.FC<POST> = ({ title, content, tags }) => {
     return (
         <Layout title={title}>
             <div className='post'>
+                <h1>{title}</h1>
                 <div className="tags">
                     {tags && tags.map((tag) => (<li key={'tag-' + tag}
                         className="card-tag"
