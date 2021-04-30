@@ -7,9 +7,9 @@
 }
 
 img {
-  /*画像が縮小する*/
-  width: 100%;
+  width: 100%; /*画像が縮小する*/
   height: auto;
+  background-color: transparent!important; /* 透過画像用 */
 }
 body {
   display: flex;
@@ -60,6 +60,7 @@ main {
   border-radius: 10px;
   background-color: #505663;
   color: #ffffff;
+  font-family: c;
 }
 main .post .tags {
   display: flex;
@@ -73,6 +74,7 @@ main .post .tags li {
   margin: 5px;
   padding: 10px;
   max-width: 200px;
+  min-width: min-content; /* 子要素に合わせて伸びる */
   height: fit-content;
   border-left: 5px solid #000000;
   background-color: #313540;
@@ -81,6 +83,7 @@ main .post .tags li {
 }
 .card-title {
   color: #44c8cd;
+  white-space: nowrap;
 }
 .card-tag {
   background-color: #1da5ab;
@@ -120,18 +123,21 @@ footer img {
 }
 
 /* Markdown */
-.markdown-body{
-  color: #ffffff!important;
+.markdown-body {
+  color: #ffffff !important;
 }
-.markdown-body a{
-  color: #35c8d5!important;
+.markdown-body a {
+  color: #35c8d5 !important;
 }
-.markdown-body code{
-  background-color: #313540!important;
+.markdown-body code {
+  background-color: #313540 !important;
 }
-.markdown-body table{
+.markdown-body pre {
+  background-color: #313540 !important;
+}
+.markdown-body table {
   color: #000000;
 }
-.markdown-body blockquote{
-  color: #dfe2e5!important;
+.markdown-body blockquote {
+  color: #dfe2e5 !important;
 }
