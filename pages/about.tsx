@@ -4,7 +4,7 @@ const About: React.FC = () => {
     return (
         <Layout title="Blog">
             <p className="text-4xl">
-                About
+                about
             </p>
         </Layout>
     )

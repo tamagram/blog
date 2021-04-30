@@ -4,7 +4,7 @@ const Project: React.FC = () => {
     return (
         <Layout title="Project">
             <p className="text-4xl">
-                Project
+                project
             </p>
         </Layout>
     )
