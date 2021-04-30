@@ -20,6 +20,7 @@ export const getPostBySlug = (slug: string, fields: string[] = []): POST => {
         date: "none",
         update: "none",
         title: slug,
+        img: 'none',
         tags: ["none"],
         content: 'none',
         htmlcontent: 'none'
@@ -29,6 +30,13 @@ export const getPostBySlug = (slug: string, fields: string[] = []): POST => {
         // 本文
         if (field === 'content') {
             items[field] = content
+        }
+        // img
+        if (field === 'img') {
+            if (content.match(/!\[[\w!?/\+\-_~=;.,*&@#$%\(\)\'\[\]]+\]\(https?:\/\/[\w!?/\+\-_~=;.,*&@#$%\(\)\'\[\]]+\)/)) {
+                const markdownimg = content.match(/!\[[\w!?/\+\-_~=;.,*&@#$%\(\)\'\[\]]+\]\(https?:\/\/[\w!?/\+\-_~=;.,*&@#$%\(\)\'\[\]]+\)/)[0]
+                items[field] = markdownimg.replace(/!\[[\w!?/\+\-_~=;.,*&@#$%\(\)\'\[\]]+\]\(/, '').slice(0, -1)
+            }
         }
         // meta date,title
         // 取得したデータにmetaがあればitemへ
@@ -60,6 +68,6 @@ export const getAllPosts = (fields: string[] = []) => {
 
 // for [slug].tsx page generating
 export const getPostData = (slug: string) => {
-    const post = getPostBySlug(slug, ['date', 'update', 'title', 'tags', 'content'])
+    const post = getPostBySlug(slug, ['date', 'update', 'title', 'img', 'tags', 'content'])
     return post
 }

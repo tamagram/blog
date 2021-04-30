@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { POST } from '../types/Types'
 
-const Post: React.FC<POST> = ({ title, date }) => {
+const Post: React.FC<POST> = ({ title, date, img }) => {
     return (
         <Link href={`/posts/${title}`}>
             <div className="article-card">
@@ -9,10 +9,10 @@ const Post: React.FC<POST> = ({ title, date }) => {
                 <div className="card-tags">
                     <div className="card-tag">{date}</div>
                 </div>
-                {/* <img
+                {img != 'none' && <img
                     className="card-image"
-                    src="https://raw.githubusercontent.com/tamagram/blog/master/src/articles/2021-4-1_%E4%B8%80%E5%B9%B4%E9%96%93%E3%82%92%E6%8C%AF%E3%82%8A%E8%BF%94%E3%82%8B/img/cardImage.png"
-                /> */}
+                    src={img}
+                />}
             </div>
         </Link>
         // <div>

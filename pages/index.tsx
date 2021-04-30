@@ -20,7 +20,7 @@ const Blog: React.FC<STATICPROPS> = ({ posts }) => {
 export default Blog
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = await getAllPosts(['title', 'date'])
+  const posts = await getAllPosts(['title', 'date','img'])
   return {
     // title is not real slug
     props: { posts },
