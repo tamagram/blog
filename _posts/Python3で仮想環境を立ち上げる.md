@@ -23,7 +23,8 @@ OS: Windows
 
 すると環境名ディレクトリと次のようなファイル群が生成されます。
 
-![](https://raw.githubusercontent.com/tamagram/blog/master/src/articles/2021-4-8_Python3%E3%81%A7%E4%BB%AE%E6%83%B3%E7%92%B0%E5%A2%83%E3%82%92%E7%AB%8B%E3%81%A1%E4%B8%8A%E3%81%92%E3%82%8B/img/fileinvenv.png)
+![fileinvenv](https://user-images.githubusercontent.com/66813233/116742928-1c502300-aa33-11eb-8ff3-b6583b274299.png)
+
 
 ## activate
 仮想環境を動かすためには`activate`させる必要があります。
@@ -38,7 +39,8 @@ activateしないまま作業を行ってしまうとグローバルな環境が
 
 コマンド `pip list` でインストールされているパッケージを確認してみます。
 
-![](https://raw.githubusercontent.com/tamagram/blog/master/src/articles/2021-4-8_Python3%E3%81%A7%E4%BB%AE%E6%83%B3%E7%92%B0%E5%A2%83%E3%82%92%E7%AB%8B%E3%81%A1%E4%B8%8A%E3%81%92%E3%82%8B/img/piplist.png)
+![piplist](https://user-images.githubusercontent.com/66813233/116742981-32f67a00-aa33-11eb-89c8-f1be7e685e9d.png)
+
 
 まっさらな状態であることが確認できました。ここから開発を進めていけます。
 
@@ -51,12 +53,14 @@ VScode上で`CTRL + SHIFT + P`を押し、`Select Interpreter`を選択、そこ
 
 仮想環境直下に`main.py`を作成して、`print("Hello World!")`を書き込んで実行
 
-![](https://raw.githubusercontent.com/tamagram/blog/master/src/articles/2021-4-8_Python3%E3%81%A7%E4%BB%AE%E6%83%B3%E7%92%B0%E5%A2%83%E3%82%92%E7%AB%8B%E3%81%A1%E4%B8%8A%E3%81%92%E3%82%8B/img/helloworld.png)
+![helloworld](https://user-images.githubusercontent.com/66813233/116743027-41dd2c80-aa33-11eb-8505-3cec6efc995d.png)
+
 
 モジュールもインストールしてみましょう。
 
 コマンド `pip install numpy`
 
-![](https://raw.githubusercontent.com/tamagram/blog/master/src/articles/2021-4-8_Python3%E3%81%A7%E4%BB%AE%E6%83%B3%E7%92%B0%E5%A2%83%E3%82%92%E7%AB%8B%E3%81%A1%E4%B8%8A%E3%81%92%E3%82%8B/img/module.png)
+![module](https://user-images.githubusercontent.com/66813233/116743066-50c3df00-aa33-11eb-8237-b997a20129d4.png)
+
 
 こちらも確認できました。
