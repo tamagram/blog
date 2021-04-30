@@ -1,6 +1,5 @@
-import Link from 'next/link'
 import Layout from '../../components/Layout'
-import { getAllPosts, getAllPostsSlug, getPostData } from '../../lib/api'
+import { getAllPostsSlug, getPostData } from '../../lib/api'
 import { POST } from '../../types/Types'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import ReactMarkdown from 'react-markdown'
