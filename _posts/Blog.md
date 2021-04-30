@@ -6,4 +6,4 @@ tags: ['Next.js','Vercel','Blog']
 
 ## Built with Next.js by Vercel.
 
-![Next.js](https://cdn.svgporn.com/logos/nextjs-icon.svg)
+![Next.js](https://cdn.svgporn.com/logos/nextjs.svg)
