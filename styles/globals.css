@@ -9,7 +9,7 @@
 img {
   width: 100%; /*画像が縮小する*/
   height: auto;
-  background-color: transparent!important; /* 透過画像用 */
+  background-color: transparent !important; /* 透過画像用 */
 }
 body {
   display: flex;
@@ -55,12 +55,16 @@ main {
   justify-content: center;
   align-items: center;
   margin: 1%;
-  padding: 1%;
+  padding: 3%;
   -webkit-border-radius: 10px;
   border-radius: 10px;
   background-color: #505663;
   color: #ffffff;
   font-family: c;
+}
+main .post img {
+  width: initial;
+  height: initial;
 }
 main .post .tags {
   display: flex;

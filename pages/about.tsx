@@ -1,4 +1,5 @@
 import Layout from '../components/Layout'
+import 'github-markdown-css'
 
 const About: React.FC = () => {
     return (

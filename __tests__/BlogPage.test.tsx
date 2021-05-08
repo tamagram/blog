@@ -10,7 +10,6 @@ describe('BlogPage', () => {
         })
         render(page)
         expect(await screen.findByText('Blog.md')).toBeInTheDocument()
-        expect(screen.getByText('2021-4-1')).toBeInTheDocument()
-        expect(screen.getByText('2021-4-1')).toBeInTheDocument()
+        expect(screen.getByText('2021-04-30')).toBeInTheDocument()
     })
 })
