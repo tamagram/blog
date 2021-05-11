@@ -71,3 +71,9 @@ export const getPostData = (slug: string) => {
     const post = getPostBySlug(slug, ['date', 'update', 'title', 'img', 'tags', 'content'])
     return post
 }
+
+export const getAboutData = () => {
+    const aboutDirectoryFullPath = join(process.cwd(), '_pages/about.md')
+    const aboutContents = fs.readFileSync(aboutDirectoryFullPath, 'utf8')
+    return matter(aboutContents).content
+}

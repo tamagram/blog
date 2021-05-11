@@ -6,3 +6,7 @@ export interface POST {
     tags: string[]
     content: string
 }
+
+export interface ABOUT{
+    content: string
+}
