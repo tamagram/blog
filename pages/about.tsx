@@ -6,21 +6,21 @@ import { ABOUT } from '../types/Types'
 import { getAboutData } from '../lib/api'
 
 const About: React.FC<ABOUT> = ({ content }) => {
-    return (
-        <Layout title="Blog">
-            <div className='markdown-body'>
-                <ReactMarkdown remarkPlugins={[gfm]}>{content}</ReactMarkdown>
-            </div>
-        </Layout>
-    )
+  return (
+    <Layout title="Blog">
+      <div className="markdown-body">
+        <ReactMarkdown remarkPlugins={[gfm]}>{content}</ReactMarkdown>
+      </div>
+    </Layout>
+  )
 }
 export default About
 
 export const getStaticProps: GetStaticProps = async () => {
-    const content = getAboutData()
-    return {
-        props: {
-            content,
-        },
-    }
+  const content = getAboutData()
+  return {
+    props: {
+      content,
+    },
+  }
 }

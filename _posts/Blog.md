@@ -1,7 +1,7 @@
 ---
 date: '2021-04-30'
 update: '2021-04-30'
-tags: ['Next.js','Vercel','Blog']
+tags: ['Next.js', 'Vercel', 'Blog']
 ---
 
 ## Built with Next.js by Vercel.

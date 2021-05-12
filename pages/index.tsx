@@ -12,7 +12,7 @@ const Blog: React.FC<STATICPROPS> = ({ posts }) => {
   return (
     <Layout title="Blog">
       <div className="container">
-        {posts && posts.map((post) => <Post key={post.title}{...post} />)}
+        {posts && posts.map((post) => <Post key={post.title} {...post} />)}
       </div>
     </Layout>
   )
@@ -20,7 +20,7 @@ const Blog: React.FC<STATICPROPS> = ({ posts }) => {
 export default Blog
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = await getAllPosts(['title', 'date','img'])
+  const posts = await getAllPosts(['title', 'date', 'img'])
   return {
     // title is not real slug
     props: { posts },
