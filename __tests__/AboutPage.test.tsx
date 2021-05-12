@@ -9,6 +9,8 @@ describe('AboutPage', () => {
             route: '/about',
         })
         render(page)
-        expect(await screen.findByText('about')).toBeInTheDocument()
+        expect(await screen.findByText('Profile')).toBeInTheDocument()
+        expect(screen.getByText('Interest')).toBeInTheDocument()
+        expect(screen.getByText('Links')).toBeInTheDocument()
     })
 })

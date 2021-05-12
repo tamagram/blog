@@ -4,7 +4,6 @@ import { POST } from '../../types/Types'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
-import 'github-markdown-css'
 
 const PostDetail: React.FC<POST> = ({ title, tags, content }) => {
     return (
