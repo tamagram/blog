@@ -6,7 +6,6 @@ tags: [Node.js, Yarn, webpack, Babel, TypeScript]
 
 ![image](https://user-images.githubusercontent.com/66813233/121908630-25d5e600-cd68-11eb-9482-ad33b7a9428b.png)
 
-
 ## HTML と JavaScript だけの場合
 
 node.js がインストールされているなら
