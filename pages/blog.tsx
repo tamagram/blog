@@ -2,27 +2,11 @@ import { NextPage } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import Layout from "../components/layout";
+import Header from "../components/header";
+
 const Blog: NextPage = () => (
   <Layout>
-    <header>
-      <nav>
-        <li>
-          <Link href="/">
-            <a>About</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/blog">
-            <a>Blog</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/portfolio">
-            <a>Portfolio</a>
-          </Link>
-        </li>
-      </nav>
-    </header>
+    <Header path="/blog" />
     <main>
       <h1>Blog</h1>
       <ul>

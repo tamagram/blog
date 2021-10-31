@@ -1,30 +1,12 @@
 import { NextPage } from "next";
-import Link from "next/link";
 import Image from "next/image";
 import styles from "./index.module.css";
 import Layout from "../components/layout";
+import Header from "../components/header";
 
 const Home: NextPage = () => (
   <Layout>
-    <header className={styles.header}>
-      <nav className={styles.header__nav}>
-        <li className={styles.header__nav__li}>
-          <Link href="/">
-            <a className={styles.header__nav__li__selected_a}>About</a>
-          </Link>
-        </li>
-        <li className={styles.header__nav__li}>
-          <Link href="/blog">
-            <a className={styles.header__nav__li__a}>Blog</a>
-          </Link>
-        </li>
-        <li className={styles.header__nav__li}>
-          <Link href="/portfolio">
-            <a className={styles.header__nav__li__a}>Portfolio</a>
-          </Link>
-        </li>
-      </nav>
-    </header>
+    <Header path="/" />
     <main className={styles.main}>
       <section className={styles.main__section__avatars}>
         <div>
