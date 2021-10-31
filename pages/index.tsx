@@ -1,49 +1,56 @@
 import { NextPage } from "next";
 import Head from "next/head";
+import Link from "next/link";
+import Image from "next/image";
 import styles from "./index.module.css";
+import Layout from "../components/layout";
 
 const Home: NextPage = () => (
-  <div className={styles.container}>
-    <Head>
-      <title>Create Next App</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-
+  <Layout>
+    <header>
+      <nav>
+        <li>
+          <Link href="/">
+            <a>About</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/blog">
+            <a>Blog</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/portfolio">
+            <a>Portfolio</a>
+          </Link>
+        </li>
+      </nav>
+    </header>
     <main>
-      <h1 className={styles.title}>
-        Welcome to <a href="https://nextjs.org">Next.js!</a>
-      </h1>
-
-      <p className={styles.description}>
-        Get started by editing <code>pages/index.js</code>
-      </p>
-
-      <div className={styles.grid}>
-        <a href="https://nextjs.org/docs" className={styles.card}>
-          <h3>Documentation &rarr;</h3>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a href="https://nextjs.org/learn" className={styles.card}>
-          <h3>Learn &rarr;</h3>
-          <p>Learn about Next.js in an interactive course with quizzes!</p>
-        </a>
-
-        <a
-          href="https://github.com/vercel/next.js/tree/master/examples"
-          className={styles.card}
-        >
-          <h3>Examples &rarr;</h3>
-          <p>Discover and deploy boilerplate example Next.js projects.</p>
-        </a>
-
-        <a href="https://vercel.com/new" className={styles.card}>
-          <h3>Deploy &rarr;</h3>
-          <p>Instantly deploy your Next.js site to a public URL with Vercel.</p>
-        </a>
-      </div>
+      <section>
+        <Image src="/tamagram.jpg" alt="tamagram" width={300} height={300} />
+        <Image src="/github-icon.svg" alt="github" width={90} height={90} />
+        <Image src="/twitter-icon.svg" alt="github" width={90} height={90} />
+        <Image src="/rss-icon.svg" alt="github" width={90} height={90} />
+      </section>
+      <section>
+        <h2># Profile</h2>
+        <p>
+          Name: Masahiro Tajima <br />
+          Occupation: Student <br />
+          Circle: <br />
+          - IPFactory <br />
+          - MakeIT <br />
+        </p>
+        <h2># Interest</h2>
+        <p>
+          WebDev: React <br />
+          Cloud: AWS <br />
+        </p>
+      </section>
     </main>
-  </div>
+    <footer>&copy; tamagram 2021</footer>
+  </Layout>
 );
 
 export default Home;
