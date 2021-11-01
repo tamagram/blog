@@ -5,10 +5,9 @@ import { getPage } from "next-page-tester";
 
 describe("Portfolio", () => {
   test("Render Portfolio page", async () => {
-    const { render } = await getPage({
+    const { serverRenderToString } = await getPage({
       route: "/portfolio",
     });
-    render();
-    expect(render).toMatchSnapshot();
+    expect(serverRenderToString().html).toMatchSnapshot();
   });
 });
