@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Layout from "../components/layout";
 import Header from "../components/header";
+import Footer from "../components/footer";
 
 const Blog: NextPage = () => (
   <Layout>
@@ -23,7 +24,7 @@ const Blog: NextPage = () => (
         </li>
       </ul>
     </main>
-    <footer>&copy; tamagram 2021</footer>
+    <Footer />
   </Layout>
 );
 

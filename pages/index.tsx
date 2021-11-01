@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from "./index.module.css";
 import Layout from "../components/layout";
 import Header from "../components/header";
+import Footer from "../components/footer";
 
 const Home: NextPage = () => (
   <Layout>
@@ -43,7 +44,7 @@ const Home: NextPage = () => (
         </div>
       </section>
     </main>
-    <footer className={styles.footer}>&copy; tamagram 2021</footer>
+    <Footer />
   </Layout>
 );
 
