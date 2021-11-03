@@ -1,5 +1,5 @@
 import { JSDOM } from "jsdom";
-import { getXmlDocument, getPosts, getPost } from "../../apis/hatena";
+import { getXmlDocument, getPostLinks, getPost } from "../../apis/hatena";
 import POST from "../../entities/post";
 
 describe("test getXmlDocument", () => {
@@ -10,7 +10,7 @@ describe("test getXmlDocument", () => {
   });
 });
 
-describe("test getPosts", () => {
+describe("test getPostLinks", () => {
   test("Takes a document and returns the post data", () => {
     const strXml = `<?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"
@@ -84,29 +84,11 @@ describe("test getPosts", () => {
     const jsdom = new JSDOM();
     const parser = new jsdom.window.DOMParser();
     let xmlData = parser.parseFromString(strXml, "text/xml");
-    const want: POST[] = [
-      {
-        id: "tag:blog.hatena.ne.jp,2013:blog-tamagram-13574176438028116730-13574176438028530517",
-        title: "タイトル2",
-        content: `# 見出し
-- ok`,
-        published: new Date("2021-11-01T18:58:57+09:00"),
-        updated: new Date("2021-11-01T18:58:57+09:00"),
-        tags: [],
-        link: "https://tamagram.hatenablog.com/entry/2021/11/01/185857",
-      },
-      {
-        id: "tag:blog.hatena.ne.jp,2013:blog-tamagram-13574176438028116730-13574176438028119388",
-        title: "タイトル",
-        content: `# 見出し1
-テキストテキストテキスト`,
-        published: new Date("2021-10-31T16:15:51+09:00"),
-        updated: new Date("2021-10-31T16:15:51+09:00"),
-        tags: [],
-        link: "https://tamagram.hatenablog.com/entry/2021/10/31/161551",
-      },
+    const want = [
+      "https://blog.hatena.ne.jp/tamagram/tamagram.hatenablog.com/atom/entry/13574176438028530517",
+      "https://blog.hatena.ne.jp/tamagram/tamagram.hatenablog.com/atom/entry/13574176438028119388",
     ];
-    const got = getPosts(xmlData);
+    const got = getPostLinks(xmlData);
     expect(got).toEqual(want);
   });
 });
