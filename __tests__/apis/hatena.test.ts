@@ -85,8 +85,14 @@ describe("test getPostLinks", () => {
     const parser = new jsdom.window.DOMParser();
     let xmlData = parser.parseFromString(strXml, "text/xml");
     const want = [
-      "https://blog.hatena.ne.jp/tamagram/tamagram.hatenablog.com/atom/entry/13574176438028530517",
-      "https://blog.hatena.ne.jp/tamagram/tamagram.hatenablog.com/atom/entry/13574176438028119388",
+      {
+        id: "tag:blog.hatena.ne.jp,2013:blog-tamagram-13574176438028116730-13574176438028530517",
+        link: "https://blog.hatena.ne.jp/tamagram/tamagram.hatenablog.com/atom/entry/13574176438028530517",
+      },
+      {
+        id: "tag:blog.hatena.ne.jp,2013:blog-tamagram-13574176438028116730-13574176438028119388",
+        link: "https://blog.hatena.ne.jp/tamagram/tamagram.hatenablog.com/atom/entry/13574176438028119388",
+      },
     ];
     const got = getPostLinks(xmlData);
     expect(got).toEqual(want);
