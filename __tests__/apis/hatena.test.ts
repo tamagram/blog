@@ -86,6 +86,7 @@ describe("test getPosts", () => {
     let xmlData = parser.parseFromString(strXml, "text/xml");
     const want: POST[] = [
       {
+        id: "tag:blog.hatena.ne.jp,2013:blog-tamagram-13574176438028116730-13574176438028530517",
         title: "タイトル2",
         content: `# 見出し
 - ok`,
@@ -95,6 +96,7 @@ describe("test getPosts", () => {
         link: "https://tamagram.hatenablog.com/entry/2021/11/01/185857",
       },
       {
+        id: "tag:blog.hatena.ne.jp,2013:blog-tamagram-13574176438028116730-13574176438028119388",
         title: "タイトル",
         content: `# 見出し1
 テキストテキストテキスト`,

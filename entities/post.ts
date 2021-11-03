@@ -1,4 +1,5 @@
 type POST = {
+  id: string;
   title: string;
   content: string;
   published: Date;
