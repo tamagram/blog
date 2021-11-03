@@ -9,15 +9,12 @@ const hatenaPass = process.env.HATENA_PASS;
 export const getXmlDocument = async (url) => {
   const data = await (async () => {
     return await axios
-      .get(
-        url,
-        {
-          auth: {
-            username: hatenaName,
-            password: hatenaPass,
-          },
-        }
-      )
+      .get(url, {
+        auth: {
+          username: hatenaName,
+          password: hatenaPass,
+        },
+      })
       .then((resp) => {
         return resp.data;
       })
@@ -31,12 +28,14 @@ export const getXmlDocument = async (url) => {
 
 export const getPostLinks = (document: Document) => {
   const gotEntry = document.getElementsByTagName("entry");
-  let links: { id: string; link: string }[] = [];
+  let links: { id: string; title: string; link: string }[] = [];
   for (let i = 0; i < gotEntry.length; i++) {
     const gotId = gotEntry[i].getElementsByTagName("id");
     const gotLink = gotEntry[i].getElementsByTagName("link");
+    const gotTitle = gotEntry[i].getElementsByTagName("title");
     links.push({
       id: gotId[0].textContent,
+      title: gotTitle[0].textContent,
       link: gotLink[0].getAttribute("href"),
     });
   }
