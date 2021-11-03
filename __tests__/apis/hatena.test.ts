@@ -4,8 +4,10 @@ import POST from "../../entities/post";
 
 describe("test getXmlDocument", () => {
   test("fetch document", async () => {
+    const url =
+      "https://blog.hatena.ne.jp/tamagram/tamagram.hatenablog.com/atom/entry";
     const want = "object";
-    const got = await getXmlDocument();
+    const got = await getXmlDocument(url);
     expect(typeof got === want).toBeTruthy();
   });
 });
