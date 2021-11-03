@@ -29,7 +29,7 @@ export const getXmlDocument = async () => {
   return xmlData;
 };
 
-export const getPosts = (document: Document) => {
+export const getPosts = (document: Document): POST[] => {
   const gotEntry = document.getElementsByTagName("entry");
   const posts = [];
   for (let i = 0; i < gotEntry.length; i++) {
@@ -51,4 +51,24 @@ export const getPosts = (document: Document) => {
     posts.push(post);
   }
   return posts;
+};
+
+export const getPost = (document: Document): POST => {
+  const gotEntry = document.getElementsByTagName("entry");
+  const gotId = gotEntry[0].getElementsByTagName("id");
+  const gotTitle = gotEntry[0].getElementsByTagName("title");
+  const gotContent = gotEntry[0].getElementsByTagName("content");
+  const gotPublished = gotEntry[0].getElementsByTagName("published");
+  const gotUpdated = gotEntry[0].getElementsByTagName("updated");
+  const gotLink = gotEntry[0].getElementsByTagName("link");
+  const post: POST = {
+    id: gotId[0].textContent,
+    title: gotTitle[0].textContent,
+    content: gotContent[0].textContent,
+    published: new Date(gotPublished[0].textContent),
+    updated: new Date(gotUpdated[0].textContent),
+    tags: [],
+    link: gotLink[1].getAttribute("href"),
+  };
+  return post;
 };
