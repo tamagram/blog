@@ -29,12 +29,16 @@ export const getXmlDocument = async () => {
   return xmlData;
 };
 
-export const getPostLinks = (document: Document): POST[] => {
+export const getPostLinks = (document: Document) => {
   const gotEntry = document.getElementsByTagName("entry");
-  const links = [];
+  let links: { id: string; link: string }[] = [];
   for (let i = 0; i < gotEntry.length; i++) {
+    const gotId = gotEntry[i].getElementsByTagName("id");
     const gotLink = gotEntry[i].getElementsByTagName("link");
-    links.push(gotLink[0].getAttribute("href"));
+    links.push({
+      id: gotId[0].textContent,
+      link: gotLink[0].getAttribute("href"),
+    });
   }
   return links;
 };
