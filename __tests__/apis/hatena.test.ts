@@ -1,5 +1,5 @@
 import { JSDOM } from "jsdom";
-import { getXmlDocument, getPosts } from "../../apis/hatena";
+import { getXmlDocument, getPosts, getPost } from "../../apis/hatena";
 import POST from "../../entities/post";
 
 describe("test getXmlDocument", () => {
@@ -108,5 +108,52 @@ describe("test getPosts", () => {
     ];
     const got = getPosts(xmlData);
     expect(got).toEqual(want);
+  });
+});
+
+describe("test getPost", () => {
+  test("Return post data from xml document", () => {
+    const strXml = `<?xml version="1.0" encoding="utf-8"?>
+<entry xmlns="http://www.w3.org/2005/Atom"
+        xmlns:app="http://www.w3.org/2007/app">
+<id>tag:blog.hatena.ne.jp,2013:blog-tamagram-13574176438028116730-13574176438028530517</id>
+<link rel="edit" href="https://blog.hatena.ne.jp/tamagram/tamagram.hatenablog.com/atom/entry/13574176438028530517"/>
+<link rel="alternate" type="text/html" href="https://tamagram.hatenablog.com/entry/2021/11/01/185857"/>
+<author><name>tamagram</name></author>
+<title>タイトル2</title>
+<updated>2021-11-01T18:58:57+09:00</updated>
+<published>2021-11-01T18:58:57+09:00</published>
+<app:edited>2021-11-01T18:58:57+09:00</app:edited>
+<summary type="text">見出し ok</summary>
+<content type="text/x-markdown"># 見出し
+- ok</content>
+<hatena:formatted-content type="text/html" xmlns:hatena="http://www.hatena.ne.jp/info/xmlns#">&lt;h1&gt;見出し&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ok&lt;/li&gt;
+&lt;/ul&gt;
+
+</hatena:formatted-content>
+
+<app:control>
+  <app:draft>no</app:draft>
+</app:control>
+
+</entry>`;
+    const jsdom = new JSDOM();
+    const parser = new jsdom.window.DOMParser();
+    const xmlData = parser.parseFromString(strXml, "text/xml");
+    const want: POST = {
+      id: "tag:blog.hatena.ne.jp,2013:blog-tamagram-13574176438028116730-13574176438028530517",
+      title: "タイトル2",
+      content: `# 見出し
+- ok`,
+      published: new Date("2021-11-01T18:58:57+09:00"),
+      updated: new Date("2021-11-01T18:58:57+09:00"),
+      tags: [],
+      link: "https://tamagram.hatenablog.com/entry/2021/11/01/185857",
+    };
+    const got = getPost(xmlData);
+    expect(got).toStrictEqual(want);
   });
 });
