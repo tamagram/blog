@@ -89,10 +89,12 @@ describe("test getPostLinks", () => {
     const want = [
       {
         id: "tag:blog.hatena.ne.jp,2013:blog-tamagram-13574176438028116730-13574176438028530517",
+        title: "タイトル2",
         link: "https://blog.hatena.ne.jp/tamagram/tamagram.hatenablog.com/atom/entry/13574176438028530517",
       },
       {
         id: "tag:blog.hatena.ne.jp,2013:blog-tamagram-13574176438028116730-13574176438028119388",
+        title: "タイトル",
         link: "https://blog.hatena.ne.jp/tamagram/tamagram.hatenablog.com/atom/entry/13574176438028119388",
       },
     ];
