@@ -6,11 +6,11 @@ require("dotenv").config();
 const hatenaName = process.env.HATENA_NAME;
 const hatenaPass = process.env.HATENA_PASS;
 
-export const getXmlDocument = async () => {
+export const getXmlDocument = async (url) => {
   const data = await (async () => {
     return await axios
       .get(
-        "https://blog.hatena.ne.jp/tamagram/tamagram.hatenablog.com/atom/entry",
+        url,
         {
           auth: {
             username: hatenaName,
