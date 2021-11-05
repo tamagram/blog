@@ -6,11 +6,16 @@ import Header from "../../components/header";
 import Layout from "../../components/layout";
 import styles from "./[id].module.css";
 import POST from "../../entities/post";
+import * as marked from "marked";
 
 const hatenaName = process.env.NEXT_PUBLIC_HATENA_NAME;
 const hatenaPass = process.env.NEXT_PUBLIC_HATENA_PASS;
 
 const Post: NextPage<POST> = (post) => {
+  const markToHtml = () => {
+    const html = marked.parse(post.content, { gfm: false });
+    return html;
+  };
   return (
     <Layout>
       <Header path="/blog" />
@@ -54,8 +59,9 @@ const Post: NextPage<POST> = (post) => {
         </section>
         <section className={styles.main__section_markdown}>
           <p>{post.content}</p>
-          <p>{post.link}</p>
+          {markToHtml()}
         </section>
+        <p>{post.link}</p>
       </main>
       <Footer />
     </Layout>
