@@ -1,5 +1,6 @@
 import { GetStaticProps, NextPage } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import Layout from "../components/layout";
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -8,22 +9,31 @@ import axios from "axios";
 import { JSDOM } from "jsdom";
 
 type Props = {
-  links: { id: string; title: string }[];
+  links: { id: string; title: string; number: string }[];
 };
 
-export const hatenaName = process.env.NEXT_PUBLIC_HATENA_NAME;
-export const hatenaPass = process.env.NEXT_PUBLIC_HATENA_PASS;
+const hatenaName = process.env.NEXT_PUBLIC_HATENA_NAME;
+const hatenaPass = process.env.NEXT_PUBLIC_HATENA_PASS;
 
 const Blog: NextPage<Props> = ({ links }) => {
   const linksLi = () =>
     links.map((link) => (
       <li key={link.id} className={styles.main__ul__li}>
-        <article className={styles.main__ul__li__article}>
-          <div className={styles.main__ul__li__article__div}>
-            <Image src="/120x120.png" alt="placehold" width={90} height={90} />
-          </div>
-          <h2 className={styles.main__ul__li__article__h2}>{link.title}</h2>
-        </article>
+        <Link href={"/posts/" + link.number}>
+          <a>
+            <article className={styles.main__ul__li__article}>
+              <div className={styles.main__ul__li__article__div}>
+                <Image
+                  src="/120x120.png"
+                  alt="placehold"
+                  width={90}
+                  height={90}
+                />
+              </div>
+              <h2 className={styles.main__ul__li__article__h2}>{link.title}</h2>
+            </article>
+          </a>
+        </Link>
       </li>
     ));
   return (
@@ -71,13 +81,14 @@ export const getStaticProps: GetStaticProps = async () => {
   const parser = new jsdom.window.DOMParser();
   const xmlData = parser.parseFromString(data, "text/xml");
   const gotEntry = xmlData.getElementsByTagName("entry");
-  const links: { id: string; title: string }[] = [];
+  const links: { id: string; title: string; number: string }[] = [];
   for (let i = 0; i < gotEntry.length; i++) {
     const gotId = gotEntry[i].getElementsByTagName("id");
     const gotTitle = gotEntry[i].getElementsByTagName("title");
     links.push({
       id: gotId[0].textContent,
       title: gotTitle[0].textContent,
+      number: gotId[0].textContent.split("-").pop(),
     });
   }
   return {
