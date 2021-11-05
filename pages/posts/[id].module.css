@@ -38,6 +38,7 @@
 .main__section_markdown {
   background-color: white;
   border-radius: 10px;
-  padding: 20px 5%;
+  padding: 20px 10%;
   overflow-wrap: anywhere;
+  color: #607d8b;
 }

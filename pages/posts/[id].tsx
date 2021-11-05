@@ -6,16 +6,13 @@ import Header from "../../components/header";
 import Layout from "../../components/layout";
 import styles from "./[id].module.css";
 import POST from "../../entities/post";
-import * as marked from "marked";
+import ReactMarkdown from "react-markdown";
+import gfm from "remark-gfm";
 
 const hatenaName = process.env.NEXT_PUBLIC_HATENA_NAME;
 const hatenaPass = process.env.NEXT_PUBLIC_HATENA_PASS;
 
 const Post: NextPage<POST> = (post) => {
-  const markToHtml = () => {
-    const html = marked.parse(post.content, { gfm: false });
-    return html;
-  };
   return (
     <Layout>
       <Header path="/blog" />
@@ -58,8 +55,9 @@ const Post: NextPage<POST> = (post) => {
           </span>
         </section>
         <section className={styles.main__section_markdown}>
-          <p>{post.content}</p>
-          {markToHtml()}
+          <ReactMarkdown className="markdown-body" remarkPlugins={[gfm]}>
+            {post.content}
+          </ReactMarkdown>
         </section>
         <p>{post.link}</p>
       </main>
