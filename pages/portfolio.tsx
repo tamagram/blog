@@ -10,8 +10,8 @@ const Portfolio: NextPage = () => (
   <Layout>
     <Header path="/portfolio" />
     <main className={styles.main}>
-      <h1 className={styles.main__heading_1}>Projects</h1>
-      <ul>
+      <h1 className={styles.main__heading_1}>Projects 🚧整備中!</h1>
+      {/* <ul>
         <li className={styles.main__ul__li}>
           <article className={styles.main__ul__li__article}>
             <h2 className={styles.main__ul__li__article__h2}>
@@ -27,52 +27,7 @@ const Portfolio: NextPage = () => (
             </div>
           </article>
         </li>
-        <li className={styles.main__ul__li}>
-          <article className={styles.main__ul__li__article}>
-            <h2 className={styles.main__ul__li__article__h2}>
-              titlessssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
-            </h2>
-            <div className={styles.main__ul__li__article__div}>
-              <Image
-                src="/120x120.png"
-                alt="placehold"
-                width={90}
-                height={90}
-              />
-            </div>
-          </article>
-        </li>
-        <li className={styles.main__ul__li}>
-          <article className={styles.main__ul__li__article}>
-            <h2 className={styles.main__ul__li__article__h2}>
-              titlessssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
-            </h2>
-            <div className={styles.main__ul__li__article__div}>
-              <Image
-                src="/120x120.png"
-                alt="placehold"
-                width={90}
-                height={90}
-              />
-            </div>
-          </article>
-        </li>
-        <li className={styles.main__ul__li}>
-          <article className={styles.main__ul__li__article}>
-            <h2 className={styles.main__ul__li__article__h2}>
-              titlessssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
-            </h2>
-            <div className={styles.main__ul__li__article__div}>
-              <Image
-                src="/120x120.png"
-                alt="placehold"
-                width={90}
-                height={90}
-              />
-            </div>
-          </article>
-        </li>
-      </ul>
+      </ul> */}
     </main>
     <Footer />
   </Layout>
