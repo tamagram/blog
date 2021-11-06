@@ -1,18 +1,27 @@
 import axios from "axios";
 import { JSDOM } from "jsdom";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import Footer from "../../components/footer";
-import Header from "../../components/header";
-import Layout from "../../components/layout";
+import Footer from "../../../components/footer";
+import Header from "../../../components/header";
+import Layout from "../../../components/layout";
 import styles from "./[id].module.css";
-import POST from "../../entities/post";
+import POST from "../../../entities/post";
 import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
+import { parse as htmlParse } from "node-html-parser";
+import TurndownService from "turndown";
 
 const hatenaName = process.env.NEXT_PUBLIC_HATENA_NAME;
 const hatenaPass = process.env.NEXT_PUBLIC_HATENA_PASS;
 
 const Post: NextPage<POST> = (post) => {
+  const markdown = () => {
+    const turndownService = new TurndownService();
+    const mark = turndownService.turndown(
+      '\u003cp\u003e最新バージョンにアップデートするために公式からtar.gzをダウンロードして展開してパスを通すくらいしか方法がないと思っていましたが，教えてもらった方法がめっちゃ便利だったので書き残しときます．\u003c/p\u003e\n\u003ch1 id="%E6%96%B9%E6%B3%95"\u003e\n\u003ca class="header-anchor-link" href="#%E6%96%B9%E6%B3%95" aria-hidden="true" rel="nofollow"\u003e\u003c/a\u003e 方法\u003c/h1\u003e\n\u003cp\u003e\u003c/p\u003e\u003cdiv class="embed-zenn-link"\u003e\u003ciframe src="https://card.zenn.dev/?url=https%3A%2F%2Fgithub.com%2Fgolang%2Fgo%2Fwiki%2FUbuntu" frameborder="0" scrolling="no" loading="lazy"\u003e\u003c/iframe\u003e\u003c/div\u003e\u003ca href="https://github.com/golang/go/wiki/Ubuntu" style="display: none" rel="nofollow"\u003ehttps://github.com/golang/go/wiki/Ubuntu\u003c/a\u003e\n\u003cblockquote\u003e\n\u003cp\u003eIf you\'re using Ubuntu 18.04 LTS or 20.04 LTS on amd64, arm64 or armhf, then you can use the longsleep/golang-backports PPA and update to Go 1.17.\u003c/p\u003e\n\u003c/blockquote\u003e\n\u003cp\u003e(Ubuntu 18.04 LTS または 20.04 LTS を amd64, arm64 または armhf で使用している場合は、longsleep/golang-backports PPA を使用して Go 1.17 にアップデートすることができます。)\u003c/p\u003e\n\u003cp\u003eバージョンを確認するには\u003c/p\u003e\n\n      \u003cdiv class="code-block-container"\u003e\n        \n        \u003cpre\u003e\u003ccode\u003ego version\n\u003c/code\u003e\u003c/pre\u003e\n\n      \u003c/div\u003e\n      \u003cp\u003eまずはPPAを追加します\u003cbr\u003e\nPPAとは「Personal Package Archive」の略であり，サードパーティ製リポジトリをaptで簡単にインストールすることができるみたいです.（しらんかった）\u003c/p\u003e\n\n      \u003cdiv class="code-block-container"\u003e\n        \n        \u003cpre\u003e\u003ccode\u003esudo add-apt-repository ppa:longsleep/golang-backports\n\u003c/code\u003e\u003c/pre\u003e\n\n      \u003c/div\u003e\n      \u003cp\u003eパッケージを更新して最新のGoをインストールしましょう.\u003c/p\u003e\n\n      \u003cdiv class="code-block-container"\u003e\n        \n        \u003cpre\u003e\u003ccode\u003esudo apt update\nsudo apt install golang-go\n\u003c/code\u003e\u003c/pre\u003e\n\n      \u003c/div\u003e\n      \u003cp\u003e改めてバージョン確認します.\u003c/p\u003e\n\n      \u003cdiv class="code-block-container"\u003e\n        \n        \u003cpre\u003e\u003ccode\u003ego version\n\u003c/code\u003e\u003c/pre\u003e\n\n      \u003c/div\u003e\n      \u003cp\u003eこれだけで最新のバージョンを取り込むことができます.\u003c/p\u003e\n\u003ch1 id="%E3%81%95%E3%81%84%E3%81%94%E3%81%AB"\u003e\n\u003ca class="header-anchor-link" href="#%E3%81%95%E3%81%84%E3%81%94%E3%81%AB" aria-hidden="true" rel="nofollow"\u003e\u003c/a\u003e さいごに\u003c/h1\u003e\n\u003cp\u003ewslでの環境でgoを使っておりバージョンアップのいい方法がないかと探していましたが，PPAを使用しての方法がめちゃ楽だったので助かりました．\u003c/p\u003e\n'
+    );
+    return mark;
+  };
   return (
     <Layout>
       <Header path="/blog" />
@@ -57,6 +66,11 @@ const Post: NextPage<POST> = (post) => {
         <section className={styles.main__section_markdown}>
           <ReactMarkdown className="markdown-body" remarkPlugins={[gfm]}>
             {post.content}
+          </ReactMarkdown>
+        </section>
+        <section className={styles.main__section_markdown}>
+          <ReactMarkdown className="markdown-body" remarkPlugins={[gfm]}>
+            {markdown()}
           </ReactMarkdown>
         </section>
         <p>{post.link}</p>

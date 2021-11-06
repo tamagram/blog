@@ -1,5 +1,6 @@
 .main {
   margin: 0 10%;
+  color: #607d8b;
 }
 
 .main__h1 {
@@ -40,5 +41,4 @@
   border-radius: 10px;
   padding: 20px 10%;
   overflow-wrap: anywhere;
-  color: #607d8b;
 }

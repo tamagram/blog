@@ -19,7 +19,7 @@ const Blog: NextPage<Props> = ({ links }) => {
   const linksLi = () =>
     links.map((link) => (
       <li key={link.id} className={styles.main__ul__li}>
-        <Link href={"/posts/" + link.number}>
+        <Link href={"/posts/hatena/" + link.number}>
           <a>
             <article className={styles.main__ul__li__article}>
               <div className={styles.main__ul__li__article__div}>
