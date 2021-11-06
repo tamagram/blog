@@ -72,8 +72,16 @@ const Blog: NextPage<Props> = ({ links }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await axios
-    .get(
+  const getXmlData = async (url: string, config: {} = {}) => {
+    const jsdom = new JSDOM();
+    const parser = new jsdom.window.DOMParser();
+    const data = await axios.get(url, config).then((res) => res.data);
+    const xmlData = parser.parseFromString(data, "text/xml");
+    return xmlData;
+  };
+
+  const getHatenaLinks = async () => {
+    const xmlData = await getXmlData(
       "https://blog.hatena.ne.jp/tamagram/tamagram.hatenablog.com/atom/entry",
       {
         auth: {
@@ -81,22 +89,41 @@ export const getStaticProps: GetStaticProps = async () => {
           password: hatenaPass,
         },
       }
-    )
-    .then((res) => res.data);
-  const jsdom = new JSDOM();
-  const parser = new jsdom.window.DOMParser();
-  const xmlData = parser.parseFromString(data, "text/xml");
-  const gotEntry = xmlData.getElementsByTagName("entry");
-  const links: Link[] = [];
-  for (let i = 0; i < gotEntry.length; i++) {
-    const gotId = gotEntry[i].getElementsByTagName("id");
-    const gotTitle = gotEntry[i].getElementsByTagName("title");
-    links.push({
-      id: gotId[0].textContent,
-      title: gotTitle[0].textContent,
-      local: "/posts/hatena/" + gotId[0].textContent.split("-").pop(),
-    });
-  }
+    );
+    const gotEntry = xmlData.getElementsByTagName("entry");
+    const links: Link[] = [];
+    for (let i = 0; i < gotEntry.length; i++) {
+      const gotId = gotEntry[i].getElementsByTagName("id");
+      const gotTitle = gotEntry[i].getElementsByTagName("title");
+      links.push({
+        id: gotId[0].textContent,
+        title: gotTitle[0].textContent,
+        local: "/posts/hatena/" + gotId[0].textContent.split("-").pop(),
+      });
+    }
+    return links;
+  };
+
+  const getZennLinks = async () => {
+    const xmlData = await getXmlData("https://zenn.dev/tamagram/feed");
+    const gotItem = xmlData.getElementsByTagName("item");
+    const links: Link[] = [];
+    for (let i = 0; i < gotItem.length; i++) {
+      const gotId = gotItem[i].getElementsByTagName("guid");
+      const gotTitle = gotItem[i].getElementsByTagName("title");
+      links.push({
+        id: gotId[0].textContent.split("/").pop(),
+        title: gotTitle[0].textContent,
+        local: "/posts/zenn/" + gotId[0].textContent.split("/").pop(),
+      });
+    }
+    return links;
+  };
+
+  const links = [];
+  links.push(...(await getHatenaLinks()));
+  links.push(...(await getZennLinks()));
+  console.log(links);
   return {
     props: {
       links,
