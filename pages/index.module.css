@@ -82,10 +82,12 @@
 } */
 
 .main {
+  min-height: 70vh;
   margin: 0 100px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  align-items: center;
   justify-content: center;
 }
 
