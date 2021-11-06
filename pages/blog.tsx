@@ -8,8 +8,14 @@ import styles from "./blog.module.css";
 import axios from "axios";
 import { JSDOM } from "jsdom";
 
+type Link = {
+  id: string;
+  title: string;
+  local: string;
+};
+
 type Props = {
-  links: { id: string; title: string; number: string }[];
+  links: Link[];
 };
 
 const hatenaName = process.env.NEXT_PUBLIC_HATENA_NAME;
@@ -19,7 +25,7 @@ const Blog: NextPage<Props> = ({ links }) => {
   const linksLi = () =>
     links.map((link) => (
       <li key={link.id} className={styles.main__ul__li}>
-        <Link href={"/posts/hatena/" + link.number}>
+        <Link href={link.local}>
           <a>
             <article className={styles.main__ul__li__article}>
               <div className={styles.main__ul__li__article__div}>
@@ -81,14 +87,14 @@ export const getStaticProps: GetStaticProps = async () => {
   const parser = new jsdom.window.DOMParser();
   const xmlData = parser.parseFromString(data, "text/xml");
   const gotEntry = xmlData.getElementsByTagName("entry");
-  const links: { id: string; title: string; number: string }[] = [];
+  const links: Link[] = [];
   for (let i = 0; i < gotEntry.length; i++) {
     const gotId = gotEntry[i].getElementsByTagName("id");
     const gotTitle = gotEntry[i].getElementsByTagName("title");
     links.push({
       id: gotId[0].textContent,
       title: gotTitle[0].textContent,
-      number: gotId[0].textContent.split("-").pop(),
+      local: "/posts/hatena/" + gotId[0].textContent.split("-").pop(),
     });
   }
   return {
