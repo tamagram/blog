@@ -21,9 +21,23 @@ const Home: NextPage = () => (
         </div>
         <div className={styles.main__section__avatar_name}>tama</div>
         <div className={styles.main__section__icons}>
-          <Image src="/github-icon.svg" alt="github" width={40} height={40} />
-          <Image src="/twitter-icon.svg" alt="github" width={40} height={40} />
-          <Image src="/rss-icon.svg" alt="github" width={40} height={40} />
+          <a href="https://github.com/tamagram">
+            <Image src="/github-icon.svg" alt="github" width={40} height={40} />
+          </a>
+          <a href="https://twitter.com/tamagrm">
+            <Image
+              src="/twitter-icon.svg"
+              alt="github"
+              width={40}
+              height={40}
+            />
+          </a>
+          <a href="https://zenn.dev/tamagram">
+            <Image src="/zenn-icon.svg" alt="github" width={40} height={40} />
+          </a>
+          <a href="https://tamagram.hatenablog.com/">
+            <Image src="/hatena-icon.svg" alt="github" width={40} height={40} />
+          </a>
         </div>
       </section>
       <section className={styles.main__section__profiles}>

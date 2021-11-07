@@ -112,6 +112,7 @@
 
 .main__section__icons {
   margin-top: 20px;
+  gap: 15px;
   width: 200px;
   display: flex;
   justify-content: space-around;

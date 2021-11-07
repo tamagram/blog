@@ -25,8 +25,8 @@ const Blog: NextPage<Props> = ({ links }) => {
             <article className={styles.main__ul__li__article}>
               <div className={styles.main__ul__li__article__div}>
                 <Image
-                  src="/120x120.png"
-                  alt="placehold"
+                  src={"/" + link.reference + "-icon.svg"}
+                  alt="icon"
                   width={90}
                   height={90}
                 />
@@ -42,24 +42,7 @@ const Blog: NextPage<Props> = ({ links }) => {
       <Header path="/blog" />
       <main className={styles.main}>
         <h1 className={styles.main__heading_1}>Posts</h1>
-        <ul>
-          {linksLi()}
-          <li className={styles.main__ul__li}>
-            <article className={styles.main__ul__li__article}>
-              <div className={styles.main__ul__li__article__div}>
-                <Image
-                  src="/120x120.png"
-                  alt="placehold"
-                  width={90}
-                  height={90}
-                />
-              </div>
-              <h2 className={styles.main__ul__li__article__h2}>
-                titlessssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
-              </h2>
-            </article>
-          </li>
-        </ul>
+        <ul>{linksLi()}</ul>
       </main>
       <Footer />
     </Layout>
@@ -94,6 +77,7 @@ export const getStaticProps: GetStaticProps = async () => {
         id: gotId[0].textContent,
         title: gotTitle[0].textContent,
         local: "/posts/hatena/" + gotId[0].textContent.split("-").pop(),
+        reference: "hatena",
       });
     }
     return links;
@@ -110,6 +94,7 @@ export const getStaticProps: GetStaticProps = async () => {
         id: gotId[0].textContent.split("/").pop(),
         title: gotTitle[0].textContent,
         local: "/posts/zenn/" + gotId[0].textContent.split("/").pop(),
+        reference: "zenn",
       });
     }
     return links;
@@ -118,7 +103,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const links = [];
   links.push(...(await getHatenaLinks()));
   links.push(...(await getZennLinks()));
-  console.log(links);
+  // console.dir(links);
   return {
     props: {
       links,

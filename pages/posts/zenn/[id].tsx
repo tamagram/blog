@@ -61,7 +61,9 @@ const Post: NextPage<POST> = (post) => {
             {post.content}
           </ReactMarkdown>
         </section>
-        <p>{post.link}</p>
+        <div className={styles.main__div_postLink}>
+          <a href={post.link}>{post.link}</a>
+        </div>
       </main>
       <Footer />
     </Layout>
@@ -87,6 +89,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
         id: gotId[0].textContent.split("/").pop(),
         title: gotTitle[0].textContent,
         local: "/posts/zenn/" + gotId[0].textContent.split("/").pop(),
+        reference: "zenn",
       });
     }
     return links;

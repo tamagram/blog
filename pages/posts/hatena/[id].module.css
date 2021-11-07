@@ -39,6 +39,11 @@
 .main__section_markdown {
   background-color: white;
   border-radius: 10px;
-  padding: 20px 10%;
+  padding: 5% 10%;
   overflow-wrap: anywhere;
+}
+
+.main__div_postLink {
+  margin: 10px;
+  text-align: right;
 }
