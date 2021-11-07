@@ -2,8 +2,8 @@ type POST = {
   id: string;
   title: string;
   content: string;
-  published: Date;
-  updated: Date;
+  published: string;
+  updated: string;
   tags: string[];
   link: string;
 };
