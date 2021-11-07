@@ -1,0 +1,49 @@
+.main {
+  margin: 0 10%;
+  color: #607d8b;
+}
+
+.main__h1 {
+  text-align: center;
+  color: #607d8b;
+}
+
+.main__section_updates {
+  margin: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  color: #607d8b;
+  font-size: 24px;
+}
+
+.main__section_updates__span {
+  display: flex;
+  align-items: center;
+}
+
+.main__section_updates__span__globe {
+  margin: 0 10px;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+}
+
+.main__section_updates__span__refresh {
+  margin: 0 10px;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+}
+
+.main__section_markdown {
+  background-color: white;
+  border-radius: 10px;
+  padding: 5% 10%;
+  overflow-wrap: anywhere;
+}
+
+.main__div_postLink {
+  margin: 10px;
+  text-align: right;
+}

@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Portfolio Render Portfolio page 1`] = `"<html data-reactroot=\\"\\"><head></head><body><div id=\\"__next\\"><div class=\\"layout\\"><header class=\\"header\\"><nav class=\\"header__nav\\"><li class=\\"header__nav__li\\"><a class=\\"header__nav__li__a\\" href=\\"/\\">About</a></li><li class=\\"header__nav__li\\"><a class=\\"header__nav__li__a\\" href=\\"/blog\\">Blog</a></li><li class=\\"header__nav__li\\"><a class=\\"header__nav__li__selected_a\\" href=\\"/portfolio\\">Portfolio</a></li></nav></header><main class=\\"main\\"><h1 class=\\"main__heading_1\\">Projects 🚧整備中!</h1></main><footer class=\\"footer\\">© tamagram 2021</footer></div></div></body></html>"`;

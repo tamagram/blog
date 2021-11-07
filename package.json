@@ -1,0 +1,43 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "lint": "next lint",
+    "build": "next build",
+    "start": "next start",
+    "test": "jest",
+    "test:ci": "jest --ci"
+  },
+  "dependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/jsdom": "^16.2.13",
+    "axios": "^0.24.0",
+    "dotenv": "^10.0.0",
+    "github-markdown-css": "^5.0.0",
+    "next": "latest",
+    "node-html-parser": "^5.1.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-markdown": "^7.1.0",
+    "remark-gfm": "^3.0.1",
+    "turndown": "^7.1.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "5.14.1",
+    "@testing-library/react": "12.0.0",
+    "@testing-library/user-event": "13.2.1",
+    "@types/node": "^16.11.6",
+    "@types/react": "^17.0.33",
+    "@types/react-test-renderer": "^17.0.1",
+    "@types/turndown": "^5.0.1",
+    "babel-jest": "27.0.6",
+    "eslint": "7.32.0",
+    "eslint-config-next": "latest",
+    "eslint-plugin-testing-library": "4.11.0",
+    "identity-obj-proxy": "3.0.0",
+    "jest": "27.0.6",
+    "next-page-tester": "^0.30.0",
+    "react-test-renderer": "17.0.2",
+    "typescript": "^4.4.4"
+  }
+}

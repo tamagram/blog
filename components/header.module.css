@@ -1,0 +1,31 @@
+.header {
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.header__nav {
+  padding: 0 100px;
+}
+
+.header__nav__li {
+  display: inline;
+  margin: 0 10px;
+}
+
+.header__nav__li__a {
+  color: #607d8b;
+  font-size: 18px;
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+.header__nav__li__selected_a {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 10px 20px;
+  background-color: #607d8b;
+}
