@@ -14,7 +14,7 @@
   flex-wrap: wrap;
   justify-content: space-around;
   color: #607d8b;
-  font-size: 24px;
+  font-size: 16px;
 }
 
 .main__section_updates__span {
@@ -44,6 +44,5 @@
 }
 
 .main__div_postLink {
-  margin: 10px;
-  text-align: right;
+  overflow-wrap: anywhere;
 }
