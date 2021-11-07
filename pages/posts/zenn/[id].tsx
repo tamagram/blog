@@ -8,9 +8,11 @@ import styles from "./[id].module.css";
 import POST from "../../../types/post";
 import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
+import { parse as htmlParse } from "node-html-parser";
+import TurndownService from "turndown";
+import LINK from "../../../types/link";
 
-const hatenaName = process.env.NEXT_PUBLIC_HATENA_NAME;
-const hatenaPass = process.env.NEXT_PUBLIC_HATENA_PASS;
+const turndownService = new TurndownService();
 
 const Post: NextPage<POST> = (post) => {
   return (
@@ -67,33 +69,31 @@ const Post: NextPage<POST> = (post) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await axios
-    .get(
-      "https://blog.hatena.ne.jp/tamagram/tamagram.hatenablog.com/atom/entry",
-      {
-        auth: {
-          username: hatenaName,
-          password: hatenaPass,
-        },
-      }
-    )
-    .then((res) => res.data);
-  const jsdom = new JSDOM();
-  const parser = new jsdom.window.DOMParser();
-  const xmlData = parser.parseFromString(data, "text/xml");
-  const gotEntry = xmlData.getElementsByTagName("entry");
-  const links: { id: string; title: string; number: string }[] = [];
-  for (let i = 0; i < gotEntry.length; i++) {
-    const gotId = gotEntry[i].getElementsByTagName("id");
-    const gotTitle = gotEntry[i].getElementsByTagName("title");
-    links.push({
-      id: gotId[0].textContent,
-      title: gotTitle[0].textContent,
-      number: gotId[0].textContent.split("-").pop(),
-    });
-  }
+  const getXmlData = async (url: string, config: {} = {}) => {
+    const jsdom = new JSDOM();
+    const parser = new jsdom.window.DOMParser();
+    const data = await axios.get(url, config).then((res) => res.data);
+    const xmlData = parser.parseFromString(data, "text/xml");
+    return xmlData;
+  };
+  const getZennLinks = async () => {
+    const xmlData = await getXmlData("https://zenn.dev/tamagram/feed");
+    const gotItem = xmlData.getElementsByTagName("item");
+    const links: LINK[] = [];
+    for (let i = 0; i < gotItem.length; i++) {
+      const gotId = gotItem[i].getElementsByTagName("guid");
+      const gotTitle = gotItem[i].getElementsByTagName("title");
+      links.push({
+        id: gotId[0].textContent.split("/").pop(),
+        title: gotTitle[0].textContent,
+        local: "/posts/zenn/" + gotId[0].textContent.split("/").pop(),
+      });
+    }
+    return links;
+  };
+  const links = await getZennLinks();
   const paths = links.map((link) => ({
-    params: { id: link.number },
+    params: { id: link.id },
   }));
   return {
     paths,
@@ -102,36 +102,32 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const postNumber = params.id as string;
-  const postLink =
-    "https://blog.hatena.ne.jp/tamagram/tamagram.hatenablog.com/atom/entry/" +
-    postNumber;
-  const data = await axios
-    .get(postLink, {
-      auth: {
-        username: hatenaName,
-        password: hatenaPass,
-      },
-    })
-    .then((res) => res.data);
-  const jsdom = new JSDOM();
-  const parser = new jsdom.window.DOMParser();
-  const xmlData = parser.parseFromString(data, "text/xml");
-  const gotEntry = xmlData.getElementsByTagName("entry");
-  const gotId = gotEntry[0].getElementsByTagName("id");
-  const gotTitle = gotEntry[0].getElementsByTagName("title");
-  const gotContent = gotEntry[0].getElementsByTagName("content");
-  const gotPublished = gotEntry[0].getElementsByTagName("published");
-  const gotUpdated = gotEntry[0].getElementsByTagName("updated");
-  const gotLink = gotEntry[0].getElementsByTagName("link");
+  const getHtmlData = async (url: string, config: {} = {}) => {
+    const jsdom = new JSDOM();
+    const parser = new jsdom.window.DOMParser();
+    const data = await axios.get(url, config).then((res) => res.data);
+    const htmlData = parser.parseFromString(data, "text/html");
+    return htmlData;
+  };
+  const htmlData = getHtmlData(
+    "https://zenn.dev/tamagram/articles/" + params.id
+  );
+  const gotNextData = (await htmlData).getElementById("__NEXT_DATA__");
+  const nextData = JSON.parse(gotNextData.textContent);
+  console.dir(nextData);
+  const gotId = nextData.props.pageProps.article.id;
+  const gotTitle = nextData.props.pageProps.article.title;
+  const gotBodyHtml = nextData.props.pageProps.article.bodyHtml;
+  const gotPublished = nextData.props.pageProps.article.createdAt;
+  const gotUpdated = nextData.props.pageProps.article.updatedAt;
   const post: POST = {
-    id: params.id as string,
-    title: gotTitle[0].textContent,
-    content: gotContent[0].textContent,
-    published: gotPublished[0].textContent,
-    updated: gotUpdated[0].textContent,
+    id: gotId,
+    title: gotTitle,
+    content: turndownService.turndown(gotBodyHtml),
+    published: gotPublished,
+    updated: gotUpdated,
     tags: [],
-    link: gotLink[1].getAttribute("href"),
+    link: "https://zenn.dev/tamagram/articles/" + params.id,
   };
   // console.dir(post);
   return { props: post };

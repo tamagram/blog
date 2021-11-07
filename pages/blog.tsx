@@ -7,15 +7,10 @@ import Footer from "../components/footer";
 import styles from "./blog.module.css";
 import axios from "axios";
 import { JSDOM } from "jsdom";
-
-type Link = {
-  id: string;
-  title: string;
-  local: string;
-};
+import LINK from "../types/link";
 
 type Props = {
-  links: Link[];
+  links: LINK[];
 };
 
 const hatenaName = process.env.NEXT_PUBLIC_HATENA_NAME;
@@ -91,7 +86,7 @@ export const getStaticProps: GetStaticProps = async () => {
       }
     );
     const gotEntry = xmlData.getElementsByTagName("entry");
-    const links: Link[] = [];
+    const links: LINK[] = [];
     for (let i = 0; i < gotEntry.length; i++) {
       const gotId = gotEntry[i].getElementsByTagName("id");
       const gotTitle = gotEntry[i].getElementsByTagName("title");
@@ -107,7 +102,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const getZennLinks = async () => {
     const xmlData = await getXmlData("https://zenn.dev/tamagram/feed");
     const gotItem = xmlData.getElementsByTagName("item");
-    const links: Link[] = [];
+    const links: LINK[] = [];
     for (let i = 0; i < gotItem.length; i++) {
       const gotId = gotItem[i].getElementsByTagName("guid");
       const gotTitle = gotItem[i].getElementsByTagName("title");
