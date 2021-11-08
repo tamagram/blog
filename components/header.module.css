@@ -1,5 +1,5 @@
 .header {
-  height: 120px;
+  height: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -64,7 +64,7 @@
   }
 
   .header__div_light_box__div_menu_close {
-    line-height: 145px;
+    line-height: 123px;
     display: block;
     text-align: right;
     margin: 0 5%;
