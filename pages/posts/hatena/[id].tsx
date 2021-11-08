@@ -124,7 +124,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const gotTitle = gotEntry[0].getElementsByTagName("title");
   const gotContent = gotEntry[0].getElementsByTagName("content");
   const gotPublished = gotEntry[0].getElementsByTagName("published");
-  const gotUpdated = gotEntry[0].getElementsByTagName("updated");
+  const gotUpdated = gotEntry[0].getElementsByTagName("app:edited");
   const gotLink = gotEntry[0].getElementsByTagName("link");
   const post: POST = {
     id: params.id as string,
