@@ -46,8 +46,5 @@
 .main__div_postLink {
   margin: 10px;
   text-align: right;
-}
-
-.main__div_postLink {
   overflow-wrap: anywhere;
 }
