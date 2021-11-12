@@ -14,6 +14,9 @@ import LINK from "../../../types/link";
 
 const turndownService = new TurndownService();
 
+const zennUrl = "https://zenn.dev/tamagram/feed";
+const zennArticleUrlPrefix = "https://zenn.dev/tamagram/articles/";
+
 const Post: NextPage<POST> = (post) => {
   return (
     <Layout>
@@ -78,8 +81,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
     const xmlData = parser.parseFromString(data, "text/xml");
     return xmlData;
   };
+
   const getZennLinks = async () => {
-    const xmlData = await getXmlData("https://zenn.dev/tamagram/feed");
+    const xmlData = await getXmlData(zennUrl);
     const gotItem = xmlData.getElementsByTagName("item");
     const links: LINK[] = [];
     for (let i = 0; i < gotItem.length; i++) {
@@ -94,6 +98,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }
     return links;
   };
+
   const links = await getZennLinks();
   const paths = links.map((link) => ({
     params: { id: link.id },
@@ -112,26 +117,32 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     const htmlData = parser.parseFromString(data, "text/html");
     return htmlData;
   };
-  const htmlData = getHtmlData(
-    "https://zenn.dev/tamagram/articles/" + params.id
-  );
-  const gotNextData = (await htmlData).getElementById("__NEXT_DATA__");
-  const nextData = JSON.parse(gotNextData.textContent);
-  console.dir(nextData);
-  const gotId = nextData.props.pageProps.article.id;
-  const gotTitle = nextData.props.pageProps.article.title;
-  const gotBodyHtml = nextData.props.pageProps.article.bodyHtml;
-  const gotPublished = nextData.props.pageProps.article.createdAt;
-  const gotUpdated = nextData.props.pageProps.article.updatedAt;
-  const post: POST = {
-    id: gotId,
-    title: gotTitle,
-    content: turndownService.turndown(gotBodyHtml),
-    published: gotPublished,
-    updated: gotUpdated,
-    tags: [],
-    link: "https://zenn.dev/tamagram/articles/" + params.id,
+
+  const getZennPost = async () => {
+    const zennPostLink = zennArticleUrlPrefix + params.id;
+    const htmlData = getHtmlData(zennPostLink);
+    const gotNextData = (await htmlData).getElementById("__NEXT_DATA__");
+    const nextData = JSON.parse(gotNextData.textContent);
+
+    const gotId = nextData.props.pageProps.article.id;
+    const gotTitle = nextData.props.pageProps.article.title;
+    const gotBodyHtml = nextData.props.pageProps.article.bodyHtml;
+    const gotPublished = nextData.props.pageProps.article.createdAt;
+    const gotUpdated = nextData.props.pageProps.article.updatedAt;
+    const post: POST = {
+      id: gotId,
+      title: gotTitle,
+      content: turndownService.turndown(gotBodyHtml),
+      published: gotPublished,
+      updated: gotUpdated,
+      tags: [],
+      link: "https://zenn.dev/tamagram/articles/" + params.id,
+    };
+
+    return post;
   };
+
+  const post = await getZennPost();
   // console.dir(post);
   return { props: post, revalidate: 86400 };
 };
