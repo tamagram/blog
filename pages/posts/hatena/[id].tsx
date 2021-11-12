@@ -89,14 +89,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const getHatenaLinks = async () => {
     const xmlData = await getXmlData(hatenaUrl, hatenaAuthConfig);
     const gotEntry = xmlData.getElementsByTagName("entry");
-    const links: { id: string; title: string; number: string }[] = [];
+    const links: LINK[] = [];
     for (let i = 0; i < gotEntry.length; i++) {
       const gotId = gotEntry[i].getElementsByTagName("id");
       const gotTitle = gotEntry[i].getElementsByTagName("title");
       links.push({
-        id: gotId[0].textContent,
+        id: gotId[0].textContent.split("-").pop(),
         title: gotTitle[0].textContent,
-        number: gotId[0].textContent.split("-").pop(),
+        local: "/posts/hatena/" + gotId[0].textContent.split("-").pop(),
+        reference: "hatena",
       });
     }
     return links;
@@ -104,7 +105,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   const links = await getHatenaLinks();
   const paths = links.map((link) => ({
-    params: { id: link.number },
+    params: { id: link.id },
   }));
   return {
     paths,
