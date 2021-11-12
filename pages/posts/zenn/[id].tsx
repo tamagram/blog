@@ -133,7 +133,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     link: "https://zenn.dev/tamagram/articles/" + params.id,
   };
   // console.dir(post);
-  return { props: post };
+  return { props: post, revalidate: 86400 };
 };
 
 export default Post;

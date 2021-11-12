@@ -136,7 +136,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     link: gotLink[1].getAttribute("href"),
   };
   // console.dir(post);
-  return { props: post };
+  return { props: post, revalidate: 86400 };
 };
 
 export default Post;
