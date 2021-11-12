@@ -114,37 +114,36 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const postNumber = params.id as string;
-  const postLink =
-    "https://blog.hatena.ne.jp/tamagram/tamagram.hatenablog.com/atom/entry/" +
-    postNumber;
-  const data = await axios
-    .get(postLink, {
-      auth: {
-        username: hatenaName,
-        password: hatenaPass,
-      },
-    })
-    .then((res) => res.data);
-  const jsdom = new JSDOM();
-  const parser = new jsdom.window.DOMParser();
-  const xmlData = parser.parseFromString(data, "text/xml");
-  const gotEntry = xmlData.getElementsByTagName("entry");
-  const gotId = gotEntry[0].getElementsByTagName("id");
-  const gotTitle = gotEntry[0].getElementsByTagName("title");
-  const gotContent = gotEntry[0].getElementsByTagName("content");
-  const gotPublished = gotEntry[0].getElementsByTagName("published");
-  const gotUpdated = gotEntry[0].getElementsByTagName("app:edited");
-  const gotLink = gotEntry[0].getElementsByTagName("link");
-  const post: POST = {
-    id: params.id as string,
-    title: gotTitle[0].textContent,
-    content: gotContent[0].textContent,
-    published: gotPublished[0].textContent,
-    updated: gotUpdated[0].textContent,
-    tags: [],
-    link: gotLink[1].getAttribute("href"),
+  const getXmlData = async (url: string, config: {} = {}) => {
+    const data = await axios.get(url, config).then((res) => res.data);
+    const jsdom = new JSDOM();
+    const parser = new jsdom.window.DOMParser();
+    const xmlData = parser.parseFromString(data, "text/xml");
+    return xmlData;
   };
+
+  const getHatenaPost = async () => {
+    const postId = params.id as string;
+    const postLink = hatenaUrl + "/" + postId;
+    const xmlData = await getXmlData(postLink, hatenaAuthConfig);
+    const gotEntry = xmlData.getElementsByTagName("entry");
+    const gotTitle = gotEntry[0].getElementsByTagName("title");
+    const gotContent = gotEntry[0].getElementsByTagName("content");
+    const gotPublished = gotEntry[0].getElementsByTagName("published");
+    const gotUpdated = gotEntry[0].getElementsByTagName("app:edited");
+    const gotLink = gotEntry[0].getElementsByTagName("link");
+    const post: POST = {
+      id: params.id as string,
+      title: gotTitle[0].textContent,
+      content: gotContent[0].textContent,
+      published: gotPublished[0].textContent,
+      updated: gotUpdated[0].textContent,
+      tags: [],
+      link: gotLink[1].getAttribute("href"),
+    };
+    return post;
+  };
+  const post = await getHatenaPost();
   // console.dir(post);
   return { props: post, revalidate: 86400 };
 };
