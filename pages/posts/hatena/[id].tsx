@@ -86,7 +86,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     return xmlData;
   };
 
-  const getHatemaLinks = async () => {
+  const getHatenaLinks = async () => {
     const xmlData = await getXmlData(hatenaUrl, hatenaAuthConfig);
     const gotEntry = xmlData.getElementsByTagName("entry");
     const links: { id: string; title: string; number: string }[] = [];
@@ -102,7 +102,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     return links;
   };
 
-  const links = await getHatemaLinks();
+  const links = await getHatenaLinks();
   const paths = links.map((link) => ({
     params: { id: link.number },
   }));
