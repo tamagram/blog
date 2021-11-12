@@ -8,9 +8,18 @@ import styles from "./[id].module.css";
 import POST from "../../../types/post";
 import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
+import LINK from "../../../types/link";
 
 const hatenaName = process.env.NEXT_PUBLIC_HATENA_NAME;
 const hatenaPass = process.env.NEXT_PUBLIC_HATENA_PASS;
+const hatenaUrl =
+  "https://blog.hatena.ne.jp/tamagram/tamagram.hatenablog.com/atom/entry";
+const hatenaAuthConfig = {
+  auth: {
+    username: hatenaName,
+    password: hatenaPass,
+  },
+};
 
 const Post: NextPage<POST> = (post) => {
   return (
@@ -69,31 +78,31 @@ const Post: NextPage<POST> = (post) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await axios
-    .get(
-      "https://blog.hatena.ne.jp/tamagram/tamagram.hatenablog.com/atom/entry",
-      {
-        auth: {
-          username: hatenaName,
-          password: hatenaPass,
-        },
-      }
-    )
-    .then((res) => res.data);
-  const jsdom = new JSDOM();
-  const parser = new jsdom.window.DOMParser();
-  const xmlData = parser.parseFromString(data, "text/xml");
-  const gotEntry = xmlData.getElementsByTagName("entry");
-  const links: { id: string; title: string; number: string }[] = [];
-  for (let i = 0; i < gotEntry.length; i++) {
-    const gotId = gotEntry[i].getElementsByTagName("id");
-    const gotTitle = gotEntry[i].getElementsByTagName("title");
-    links.push({
-      id: gotId[0].textContent,
-      title: gotTitle[0].textContent,
-      number: gotId[0].textContent.split("-").pop(),
-    });
-  }
+  const getXmlData = async (url: string, config: {} = {}) => {
+    const jsdom = new JSDOM();
+    const parser = new jsdom.window.DOMParser();
+    const data = await axios.get(url, config).then((res) => res.data);
+    const xmlData = parser.parseFromString(data, "text/xml");
+    return xmlData;
+  };
+
+  const getHatemaLinks = async () => {
+    const xmlData = await getXmlData(hatenaUrl, hatenaAuthConfig);
+    const gotEntry = xmlData.getElementsByTagName("entry");
+    const links: { id: string; title: string; number: string }[] = [];
+    for (let i = 0; i < gotEntry.length; i++) {
+      const gotId = gotEntry[i].getElementsByTagName("id");
+      const gotTitle = gotEntry[i].getElementsByTagName("title");
+      links.push({
+        id: gotId[0].textContent,
+        title: gotTitle[0].textContent,
+        number: gotId[0].textContent.split("-").pop(),
+      });
+    }
+    return links;
+  };
+
+  const links = await getHatemaLinks();
   const paths = links.map((link) => ({
     params: { id: link.number },
   }));
