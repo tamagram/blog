@@ -17,6 +17,29 @@ const Portfolio: NextPage = () => (
             <div className={styles.main__ul__li__article__div}>
               <Image
                 className={styles.main__ul__li__article__div__img}
+                src="/products/custom-songs.png"
+                alt="placehold"
+                width={600}
+                height={397}
+              />
+              <h2 className={styles.main__ul__li__article__h2}>
+                WIP🚧 custom-songs
+              </h2>
+              <p className={styles.main__ul__li__article__p}>
+                BeatSaberのカスタム曲を管理するネイティブアプリケーション
+                Electronにて開発中
+              </p>
+              <a href="https://coreque.herokuapp.com/home">
+                https://github.com/tamagram/custom-songs
+              </a>
+            </div>
+          </article>
+        </li>
+        <li className={styles.main__ul__li}>
+          <article className={styles.main__ul__li__article}>
+            <div className={styles.main__ul__li__article__div}>
+              <Image
+                className={styles.main__ul__li__article__div__img}
                 src="/products/coreque.png"
                 alt="placehold"
                 width={360}
