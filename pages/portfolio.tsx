@@ -10,24 +10,52 @@ const Portfolio: NextPage = () => (
   <Layout>
     <Header path="/portfolio" />
     <main className={styles.main}>
-      <h1 className={styles.main__heading_1}>Projects 🚧整備中!</h1>
-      {/* <ul>
+      <h1 className={styles.main__h1}>Products</h1>
+      <ul>
         <li className={styles.main__ul__li}>
           <article className={styles.main__ul__li__article}>
-            <h2 className={styles.main__ul__li__article__h2}>
-              titlessssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
-            </h2>
             <div className={styles.main__ul__li__article__div}>
               <Image
-                src="/120x120.png"
+                className={styles.main__ul__li__article__div__img}
+                src="/products/custom-songs.png"
                 alt="placehold"
-                width={90}
-                height={90}
+                width={600}
+                height={397}
               />
+              <h2 className={styles.main__ul__li__article__h2}>
+                WIP🚧 custom-songs
+              </h2>
+              <p className={styles.main__ul__li__article__p}>
+                BeatSaberのカスタム曲を管理するネイティブアプリケーション
+                Electronにて開発中
+              </p>
+              <a href="https://github.com/tamagram/custom-songs">
+                https://github.com/tamagram/custom-songs
+              </a>
             </div>
           </article>
         </li>
-      </ul> */}
+        <li className={styles.main__ul__li}>
+          <article className={styles.main__ul__li__article}>
+            <div className={styles.main__ul__li__article__div}>
+              <Image
+                className={styles.main__ul__li__article__div__img}
+                src="/products/coreque.png"
+                alt="placehold"
+                width={360}
+                height={640}
+              />
+              <h2 className={styles.main__ul__li__article__h2}>CoreQue</h2>
+              <p className={styles.main__ul__li__article__p}>
+                コンビニ商品に焦点をあてた健康管理アプリケーションをサークルのメンバーと共同で開発しました
+              </p>
+              <a href="https://coreque.herokuapp.com/home">
+                https://coreque.herokuapp.com/home
+              </a>
+            </div>
+          </article>
+        </li>
+      </ul>
     </main>
     <Footer />
   </Layout>
