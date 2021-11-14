@@ -2,10 +2,14 @@
   margin: 0 15%;
 }
 
-.main__heading_1 {
+.main__h1 {
   font-size: 32px;
   text-align: center;
   color: #607d8b;
+}
+
+.main__hr {
+  border-top: 1px solid #607d8b;
 }
 
 .main__ul__li {
@@ -15,8 +19,19 @@
 
 .main__ul__li__article {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   padding: 10px 30px;
+}
+
+.main__ul__li__article__div {
+  flex-shrink: 0;
+  padding: 10px 20px;
+}
+
+.main__ul__li__article__div__img {
+  border: 2px solid #607d8b !important;
+  border-radius: 10px;
+  background-color: white;
 }
 
 .main__ul__li__article__h2 {
@@ -26,7 +41,7 @@
   padding: 0 20px;
 }
 
-.main__ul__li__article__div {
-  flex-shrink: 0;
-  padding: 10px 20px;
+.main__ul__li__article__p {
+  font-weight: normal;
+  color: #607d8b;
 }
