@@ -29,7 +29,7 @@ const Portfolio: NextPage = () => (
                 BeatSaberのカスタム曲を管理するネイティブアプリケーション
                 Electronにて開発中
               </p>
-              <a href="https://coreque.herokuapp.com/home">
+              <a href="https://github.com/tamagram/custom-songs">
                 https://github.com/tamagram/custom-songs
               </a>
             </div>
