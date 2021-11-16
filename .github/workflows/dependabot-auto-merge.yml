@@ -17,5 +17,3 @@ jobs:
         run: yarn lint
       - name: test
         run: yarn test:ci
-      - name: build
-        run: yarn build
