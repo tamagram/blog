@@ -21,6 +21,7 @@
   display: flex;
   flex-direction: column;
   padding: 10px 30px;
+  overflow-wrap: anywhere;
 }
 
 .main__ul__li__article__div {
@@ -37,7 +38,6 @@
 .main__ul__li__article__h2 {
   font-size: 24px;
   color: #607d8b;
-  overflow-wrap: anywhere;
   padding: 0 20px;
 }
 

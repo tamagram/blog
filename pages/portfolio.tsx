@@ -17,6 +17,25 @@ const Portfolio: NextPage = () => (
             <div className={styles.main__ul__li__article__div}>
               <Image
                 className={styles.main__ul__li__article__div__img}
+                src="/products/porta.png"
+                alt="placehold"
+                width={640}
+                height={360}
+              />
+              <h2 className={styles.main__ul__li__article__h2}>WIP🚧 PORTA</h2>
+              <p className={styles.main__ul__li__article__p}>
+                クリエイターのためのオンラインポートフォリオ作成サービス
+                <br />
+                MakeIT 部内ハッカソン
+              </p>
+            </div>
+          </article>
+        </li>
+        <li className={styles.main__ul__li}>
+          <article className={styles.main__ul__li__article}>
+            <div className={styles.main__ul__li__article__div}>
+              <Image
+                className={styles.main__ul__li__article__div__img}
                 src="/products/custom-songs.png"
                 alt="placehold"
                 width={600}
@@ -48,6 +67,8 @@ const Portfolio: NextPage = () => (
               <h2 className={styles.main__ul__li__article__h2}>CoreQue</h2>
               <p className={styles.main__ul__li__article__p}>
                 コンビニ商品に焦点をあてた健康管理アプリケーションをサークルのメンバーと共同で開発しました
+                <br />
+                学生ITコンテスト2021 最優秀賞作品
               </p>
               <a href="https://coreque.herokuapp.com/home">
                 https://coreque.herokuapp.com/home
