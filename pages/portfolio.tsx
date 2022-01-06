@@ -27,6 +27,24 @@ const Portfolio: NextPage = () => (
                 クリエイターのためのオンラインポートフォリオ作成サービス
                 <br />
                 MakeIT 部内ハッカソン
+                <br />
+                <a href="https://github.com/ISC-MakeIT/porta">
+                  https://github.com/ISC-MakeIT/porta
+                </a>
+                <div className={styles.main__ul__li__article__tech}>
+                  利用技術 <br />
+                  ・Docker
+                  <br />
+                  ・React
+                  <br />
+                  ・Gin, GORM
+                  <br />
+                  ・Ngrok
+                  <br />
+                  ・Auth0
+                  <br />
+                  ・MINIO
+                </div>
               </p>
             </div>
           </article>
@@ -47,10 +65,17 @@ const Portfolio: NextPage = () => (
               <p className={styles.main__ul__li__article__p}>
                 BeatSaberのカスタム曲を管理するネイティブアプリケーション
                 Electronにて開発中
+                <br />
+                <a href="https://github.com/tamagram/custom-songs">
+                  https://github.com/tamagram/custom-songs
+                </a>
+                <div className={styles.main__ul__li__article__tech}>
+                  利用技術 <br />
+                  ・Electron
+                  <br />
+                  ・React
+                </div>
               </p>
-              <a href="https://github.com/tamagram/custom-songs">
-                https://github.com/tamagram/custom-songs
-              </a>
             </div>
           </article>
         </li>
@@ -69,10 +94,24 @@ const Portfolio: NextPage = () => (
                 コンビニ商品に焦点をあてた健康管理アプリケーションをサークルのメンバーと共同で開発しました
                 <br />
                 学生ITコンテスト2021 最優秀賞作品
+                <br />
+                <br />
+                <a href="https://coreque.herokuapp.com/home">
+                  https://coreque.herokuapp.com/home
+                </a>
+                <br />
+                <a href="https://github.com/ISC-MakeIT/CoreQue-api">
+                  https://github.com/ISC-MakeIT/CoreQue-api
+                </a>
+                <div className={styles.main__ul__li__article__tech}>
+                  利用技術 <br />
+                  ・AWS Lambda, DynamoDB, S3, APIGateway
+                  <br />
+                  ・Terraform
+                  <br />
+                  ・Python
+                </div>
               </p>
-              <a href="https://coreque.herokuapp.com/home">
-                https://coreque.herokuapp.com/home
-              </a>
             </div>
           </article>
         </li>
