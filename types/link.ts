@@ -3,6 +3,7 @@ type LINK = {
   title: string;
   local: string;
   reference: string;
+  createdAt: Date;
 };
 
 export default LINK;
