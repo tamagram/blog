@@ -33,6 +33,7 @@
   border: 2px solid #607d8b !important;
   border-radius: 10px;
   background-color: white;
+  object-fit: cover;
 }
 
 .main__ul__li__article__h2 {
@@ -44,4 +45,11 @@
 .main__ul__li__article__p {
   font-weight: normal;
   color: #607d8b;
+}
+
+.main__ul__li__article__tech {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  text-align: left;
 }

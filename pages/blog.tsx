@@ -73,11 +73,13 @@ export const getStaticProps: GetStaticProps = async () => {
     for (let i = 0; i < gotEntry.length; i++) {
       const gotId = gotEntry[i].getElementsByTagName("id");
       const gotTitle = gotEntry[i].getElementsByTagName("title");
+      const gotPublished = gotEntry[i].getElementsByTagName("published");
       links.push({
         id: gotId[0].textContent,
         title: gotTitle[0].textContent,
         local: "/posts/hatena/" + gotId[0].textContent.split("-").pop(),
         reference: "hatena",
+        createdAt: new Date(gotPublished[0].textContent),
       });
     }
     return links;
@@ -90,20 +92,24 @@ export const getStaticProps: GetStaticProps = async () => {
     for (let i = 0; i < gotItem.length; i++) {
       const gotId = gotItem[i].getElementsByTagName("guid");
       const gotTitle = gotItem[i].getElementsByTagName("title");
+      const gotPubDate = gotItem[i].getElementsByTagName("pubDate");
       links.push({
         id: gotId[0].textContent.split("/").pop(),
         title: gotTitle[0].textContent,
         local: "/posts/zenn/" + gotId[0].textContent.split("/").pop(),
         reference: "zenn",
+        createdAt: new Date(gotPubDate[0].textContent),
       });
     }
     return links;
   };
 
-  const links = [];
+  let links: LINK[] = [];
   links.push(...(await getHatenaLinks()));
   links.push(...(await getZennLinks()));
-  // console.dir(links);
+  links = links.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  links = JSON.parse(JSON.stringify(links));
+  console.dir(links);
   return {
     props: {
       links,
