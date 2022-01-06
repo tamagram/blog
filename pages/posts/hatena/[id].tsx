@@ -93,11 +93,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
     for (let i = 0; i < gotEntry.length; i++) {
       const gotId = gotEntry[i].getElementsByTagName("id");
       const gotTitle = gotEntry[i].getElementsByTagName("title");
+      const gotPublished = gotEntry[i].getElementsByTagName("published");
       links.push({
         id: gotId[0].textContent.split("-").pop(),
         title: gotTitle[0].textContent,
         local: "/posts/hatena/" + gotId[0].textContent.split("-").pop(),
         reference: "hatena",
+        createdAt: new Date(gotPublished[0].textContent),
       });
     }
     return links;

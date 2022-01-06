@@ -109,7 +109,7 @@ export const getStaticProps: GetStaticProps = async () => {
   links.push(...(await getZennLinks()));
   links = links.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
   links = JSON.parse(JSON.stringify(links));
-  console.dir(links);
+  // console.dir(links);
   return {
     props: {
       links,
