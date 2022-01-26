@@ -12,7 +12,7 @@
     "@types/axios": "^0.14.0",
     "@types/jsdom": "^16.2.14",
     "axios": "^0.25.0",
-    "dotenv": "^14.3.0",
+    "dotenv": "^14.3.2",
     "github-markdown-css": "^5.1.0",
     "next": "latest",
     "node-html-parser": "^5.2.0",
