@@ -11,7 +11,7 @@
   "dependencies": {
     "@types/axios": "^0.14.0",
     "@types/jsdom": "^16.2.14",
-    "axios": "^0.26.1",
+    "axios": "^0.27.1",
     "dotenv": "^16.0.0",
     "github-markdown-css": "^5.1.0",
     "next": "latest",
@@ -31,7 +31,7 @@
     "@types/react-test-renderer": "^18.0.0",
     "@types/turndown": "^5.0.1",
     "babel-jest": "28.0.1",
-    "eslint": "8.13.0",
+    "eslint": "8.14.0",
     "eslint-config-next": "latest",
     "eslint-plugin-testing-library": "5.3.1",
     "identity-obj-proxy": "3.0.0",
