@@ -12,7 +12,7 @@ const fetcher = (url: string) => fetch(url).then(res => res.json())
 
 const Blog: NextPage = () => {
   const { data, error } = useSWR<LINK[]>(
-    "api/hatena",
+    "api/links",
     fetcher
   );
 
