@@ -127,14 +127,14 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     const gotId = nextData.props.pageProps.article.id;
     const gotTitle = nextData.props.pageProps.article.title;
     const gotBodyHtml = nextData.props.pageProps.article.bodyHtml;
-    const gotPublished = nextData.props.pageProps.article.createdAt;
+    const gotPublished = nextData.props.pageProps.article.publishedAt;
     const gotUpdated = nextData.props.pageProps.article.updatedAt;
     const post: POST = {
       id: gotId,
       title: gotTitle,
       content: turndownService.turndown(gotBodyHtml),
       published: gotPublished,
-      updated: gotUpdated,
+      updated: gotUpdated || gotPublished,
       tags: [],
       link: "https://zenn.dev/tamagram/articles/" + params.id,
     };
@@ -143,7 +143,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 
   const post = await getZennPost();
-  // console.dir(post);
+  console.dir(post);
   return { props: post, revalidate: 86400 };
 };
 
