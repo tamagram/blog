@@ -30,7 +30,7 @@
     "@types/react": "^18.0.7",
     "@types/react-test-renderer": "^18.0.0",
     "@types/turndown": "^5.0.1",
-    "babel-jest": "28.0.2",
+    "babel-jest": "28.0.3",
     "eslint": "8.14.0",
     "eslint-config-next": "latest",
     "eslint-plugin-testing-library": "5.3.1",
