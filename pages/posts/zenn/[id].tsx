@@ -1,5 +1,3 @@
-import axios from "axios";
-import { JSDOM } from "jsdom";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Footer from "../../../components/footer";
 import Header from "../../../components/header";
@@ -8,14 +6,7 @@ import styles from "./[id].module.css";
 import POST from "../../../types/post";
 import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
-import { parse as htmlParse } from "node-html-parser";
-import TurndownService from "turndown";
 import LINK from "../../../types/link";
-
-const turndownService = new TurndownService();
-
-const zennUrl = "https://zenn.dev/tamagram/feed";
-const zennArticleUrlPrefix = "https://zenn.dev/tamagram/articles/";
 
 const Post: NextPage<POST> = (post) => {
   return (
@@ -89,40 +80,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const getHtmlData = async (url: string, config: {} = {}) => {
-    const jsdom = new JSDOM();
-    const parser = new jsdom.window.DOMParser();
-    const data = await axios.get(url, config).then((res) => res.data);
-    const htmlData = parser.parseFromString(data, "text/html");
-    return htmlData;
-  };
-
-  const getZennPost = async () => {
-    const zennPostLink = zennArticleUrlPrefix + params.id;
-    const htmlData = getHtmlData(zennPostLink);
-    const gotNextData = (await htmlData).getElementById("__NEXT_DATA__");
-    const nextData = JSON.parse(gotNextData.textContent);
-
-    const gotId = nextData.props.pageProps.article.id;
-    const gotTitle = nextData.props.pageProps.article.title;
-    const gotBodyHtml = nextData.props.pageProps.article.bodyHtml;
-    const gotPublished = nextData.props.pageProps.article.publishedAt;
-    const gotUpdated = nextData.props.pageProps.article.updatedAt;
-    const post: POST = {
-      id: gotId,
-      title: gotTitle,
-      content: turndownService.turndown(gotBodyHtml),
-      published: gotPublished,
-      updated: gotUpdated || gotPublished,
-      tags: [],
-      link: "https://zenn.dev/tamagram/articles/" + params.id,
-    };
-
-    return post;
-  };
-
-  const post = await getZennPost();
-  console.dir(post);
+  const response = await fetch("http://localhost:3000/api/zenn/" + params.id);
+  const post: POST = await response.json();
   return { props: post, revalidate: 86400 };
 };
 

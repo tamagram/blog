@@ -1,5 +1,3 @@
-import axios from "axios";
-import { JSDOM } from "jsdom";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Footer from "../../../components/footer";
 import Header from "../../../components/header";
