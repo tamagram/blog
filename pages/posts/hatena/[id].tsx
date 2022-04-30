@@ -10,17 +10,6 @@ import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
 import LINK from "../../../types/link";
 
-const hatenaName = process.env.NEXT_PUBLIC_HATENA_NAME;
-const hatenaPass = process.env.NEXT_PUBLIC_HATENA_PASS;
-const hatenaUrl =
-  "https://blog.hatena.ne.jp/tamagram/tamagram.hatenablog.com/atom/entry";
-const hatenaAuthConfig = {
-  auth: {
-    username: hatenaName,
-    password: hatenaPass,
-  },
-};
-
 const Post: NextPage<POST> = (post) => {
   return (
     <Layout>
@@ -78,32 +67,11 @@ const Post: NextPage<POST> = (post) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const getXmlData = async (url: string, config: {} = {}) => {
-    const jsdom = new JSDOM();
-    const parser = new jsdom.window.DOMParser();
-    const data = await axios.get(url, config).then((res) => res.data);
-    const xmlData = parser.parseFromString(data, "text/xml");
-    return xmlData;
-  };
-
   const getHatenaLinks = async () => {
-    const xmlData = await getXmlData(hatenaUrl, hatenaAuthConfig);
-    const gotEntry = xmlData.getElementsByTagName("entry");
-    const links: LINK[] = [];
-    for (let i = 0; i < gotEntry.length; i++) {
-      const gotId = gotEntry[i].getElementsByTagName("id");
-      const gotTitle = gotEntry[i].getElementsByTagName("title");
-      links.push({
-        id: gotId[0].textContent.split("-").pop(),
-        title: gotTitle[0].textContent,
-        local: "/posts/hatena/" + gotId[0].textContent.split("-").pop(),
-        reference: "hatena",
-      });
-    }
-    return links;
+    const response = await fetch("http://localhost:3000/api/hatena/links")
+    return response.json();
   };
-
-  const links = await getHatenaLinks();
+  const links: LINK[] = await getHatenaLinks();
   const paths = links.map((link) => ({
     params: { id: link.id },
   }));
@@ -114,37 +82,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const getXmlData = async (url: string, config: {} = {}) => {
-    const data = await axios.get(url, config).then((res) => res.data);
-    const jsdom = new JSDOM();
-    const parser = new jsdom.window.DOMParser();
-    const xmlData = parser.parseFromString(data, "text/xml");
-    return xmlData;
-  };
-
-  const getHatenaPost = async () => {
-    const postId = params.id as string;
-    const postLink = hatenaUrl + "/" + postId;
-    const xmlData = await getXmlData(postLink, hatenaAuthConfig);
-    const gotEntry = xmlData.getElementsByTagName("entry");
-    const gotTitle = gotEntry[0].getElementsByTagName("title");
-    const gotContent = gotEntry[0].getElementsByTagName("content");
-    const gotPublished = gotEntry[0].getElementsByTagName("published");
-    const gotUpdated = gotEntry[0].getElementsByTagName("app:edited");
-    const gotLink = gotEntry[0].getElementsByTagName("link");
-    const post: POST = {
-      id: params.id as string,
-      title: gotTitle[0].textContent,
-      content: gotContent[0].textContent,
-      published: gotPublished[0].textContent,
-      updated: gotUpdated[0].textContent,
-      tags: [],
-      link: gotLink[1].getAttribute("href"),
-    };
-    return post;
-  };
-  const post = await getHatenaPost();
-  // console.dir(post);
+  const response = await fetch("http://localhost:3000/api/hatena/" + params.id);
+  const post: POST = await response.json();
   return { props: post, revalidate: 86400 };
 };
 
