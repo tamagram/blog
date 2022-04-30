@@ -74,32 +74,11 @@ const Post: NextPage<POST> = (post) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const getXmlData = async (url: string, config: {} = {}) => {
-    const jsdom = new JSDOM();
-    const parser = new jsdom.window.DOMParser();
-    const data = await axios.get(url, config).then((res) => res.data);
-    const xmlData = parser.parseFromString(data, "text/xml");
-    return xmlData;
-  };
-
   const getZennLinks = async () => {
-    const xmlData = await getXmlData(zennUrl);
-    const gotItem = xmlData.getElementsByTagName("item");
-    const links: LINK[] = [];
-    for (let i = 0; i < gotItem.length; i++) {
-      const gotId = gotItem[i].getElementsByTagName("guid");
-      const gotTitle = gotItem[i].getElementsByTagName("title");
-      links.push({
-        id: gotId[0].textContent.split("/").pop(),
-        title: gotTitle[0].textContent,
-        local: "/posts/zenn/" + gotId[0].textContent.split("/").pop(),
-        reference: "zenn",
-      });
-    }
-    return links;
-  };
-
-  const links = await getZennLinks();
+    const response = await fetch("http://localhost:3000/api/zenn/links");
+    return response.json();
+  }
+  const links: LINK[] = await getZennLinks();
   const paths = links.map((link) => ({
     params: { id: link.id },
   }));
