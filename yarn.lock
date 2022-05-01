@@ -4274,17 +4274,17 @@ negotiator@0.6.2:
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.2.tgz#feacf7ccf525a77ae9634436a64883ffeca346fb"
   integrity sha512-hZXc7K2e+PgeI1eDBe/10Ard4ekbfrrqG8Ep+8Jmf4JID2bNg7NvCPOZN+kfF574pFQI7mum2AUqDidoKqcTOw==
 
-next-page-tester@^0.30.0:
-  version "0.30.0"
-  resolved "https://registry.yarnpkg.com/next-page-tester/-/next-page-tester-0.30.0.tgz#6dea40c91f2e93dcfbbd64d8f53b0fa3cadaf06c"
-  integrity sha512-dUEGusrwMjl77XII2GQF0ULMlBjCksXH4/GFejLRPIbpr/qChU/hTN+flQRdryYPRFW44ATVsgQet4HMlPdauw==
+next-page-tester@^0.32.0:
+  version "0.32.0"
+  resolved "https://registry.yarnpkg.com/next-page-tester/-/next-page-tester-0.32.0.tgz#5bddce2518518dbd0dbf6a6432dbfda4895da12a"
+  integrity sha512-fBqHrI8SVZpO2TYPSv+a3NTrGF7kOJCzDQwpx2RtOnOlrvlllDBzEnDmJ6Dl+M7ujPUw2RDxvfM5fjWotgRNXA==
   dependencies:
     "@types/express" "^4.17.13"
     cookie "^0.4.1"
     dotenv "^8.2.0"
     dotenv-expand "^5.1.0"
     find-root "^1.1.0"
-    node-mocks-http "^1.10.1"
+    node-mocks-http "^1.11.0"
     normalize-path "^3.0.0"
     stealthy-require "^1.1.1"
     tiny-glob "^0.2.9"
@@ -4336,7 +4336,7 @@ node-int64@^0.4.0:
   resolved "https://registry.yarnpkg.com/node-int64/-/node-int64-0.4.0.tgz#87a9065cdb355d3182d8f94ce11188b825c68a3b"
   integrity sha1-h6kGXNs1XTGC2PlM4RGIuCXGijs=
 
-node-mocks-http@^1.10.1:
+node-mocks-http@^1.11.0:
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/node-mocks-http/-/node-mocks-http-1.11.0.tgz#defc0febf6b935f08245397d47534a8de592996e"
   integrity sha512-jS/WzSOcKbOeGrcgKbenZeNhxUNnP36Yw11+hL4TTxQXErGfqYZ+MaYNNvhaTiGIJlzNSqgQkk9j8dSu1YWSuw==
