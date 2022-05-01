@@ -44,16 +44,20 @@ const Home: NextPage = () => (
         <div className={styles.main__section__profiles__div}>
           <h2># Profile</h2>
           <p>
-            Name: Masahiro Tajima <br />
-            Occupation: Student <br />
-            Circle: <br />
-            - IPFactory <br />
-            - MakeIT <br />
+            **Name** <br />
+            Masahiro Tajima <br />
+            **Occupation** <br />
+            Student <br />
+            **Club** <br />
+            IPFactory <br />
+            MakeIT <br />
           </p>
           <h2># Interest</h2>
           <p>
-            WebDev: React <br />
-            Cloud: AWS <br />
+            **WebDev** <br />
+            React <br />
+            **Cloud** <br />
+            AWS <br />
           </p>
         </div>
       </section>
