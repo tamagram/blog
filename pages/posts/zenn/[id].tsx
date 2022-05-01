@@ -7,6 +7,9 @@ import POST from "../../../types/post";
 import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
 import LINK from "../../../types/link";
+import axios from "axios";
+
+const apiPort = process.env.API_PORT || "3000";
 
 const Post: NextPage<POST> = (post) => {
   return (
@@ -66,8 +69,8 @@ const Post: NextPage<POST> = (post) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const getZennLinks = async () => {
-    const response = await fetch("http://localhost:3000/api/zenn/links");
-    return response.json();
+    const response = await axios.get(`http://localhost:${apiPort}/api/zenn/links`);
+    return response.data;
   }
   const links: LINK[] = await getZennLinks();
   const paths = links.map((link) => ({
@@ -80,8 +83,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const response = await fetch("http://localhost:3000/api/zenn/" + params.id);
-  const post: POST = await response.json();
+  const response = await axios.get(`http://localhost:${apiPort}/api/zenn/${params.id}`);
+  const post: POST = await response.data;
   return { props: post, revalidate: 86400 };
 };
 
