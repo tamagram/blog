@@ -1,19 +1,19 @@
-name: Dependabot Auto Merge
+# name: Dependabot Auto Merge
 
-on:
-  pull_request:
+# on:
+#   pull_request:
 
-jobs:
-  auto-merge-test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@master
-        with:
-          node-version: 14
-      - name: install dependencies
-        run: yarn
-      - name: lint
-        run: yarn lint
-      - name: test
-        run: yarn test:ci
+# jobs:
+#   auto-merge-test:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#       - uses: actions/setup-node@master
+#         with:
+#           node-version: 14
+#       - name: install dependencies
+#         run: yarn
+#       - name: lint
+#         run: yarn lint
+#       - name: test
+#         run: yarn test:ci
