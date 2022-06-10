@@ -34,7 +34,7 @@ const handler = async (req, res) => {
         .then((res) => res.data);
       const parser = new XMLParser();
       const jsonObj = parser.parse(data);
-      console.log(jsonObj);
+      // console.log(jsonObj);
       const post: POST = {
         id: pid,
         title: jsonObj.entry.title,
@@ -48,7 +48,7 @@ const handler = async (req, res) => {
     };
     const post = await getHatenaPost();
     res.statusCode = 200;
-    console.log(post);
+    // console.log(post);
     res.json(post);
   } catch (e) {
     console.log(e);

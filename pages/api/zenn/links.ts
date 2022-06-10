@@ -29,7 +29,7 @@ const handler = async (req, res) => {
       return links;
     };
     const links = await getZennLinks();
-    console.log(links);
+    // console.log(links);
     res.statusCode = 200;
     res.json(links);
   } catch (e) {

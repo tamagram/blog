@@ -137,7 +137,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       .then((res) => res.data);
     const parser = new XMLParser();
     const jsonObj = parser.parse(data);
-    console.log(jsonObj);
+    // console.log(jsonObj);
     const post: POST = {
       id: pid,
       title: jsonObj.entry.title,
