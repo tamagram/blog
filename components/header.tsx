@@ -91,7 +91,7 @@ const Header: React.FC<ROUTE> = (props) => (
             </a>
           </Link>
         </li>
-        <li className={styles.header__div_light_box__nav__li}>
+        {/* <li className={styles.header__div_light_box__nav__li}>
           <Link href="/portfolio">
             <a
               className={
@@ -103,7 +103,7 @@ const Header: React.FC<ROUTE> = (props) => (
               Portfolio
             </a>
           </Link>
-        </li>
+        </li> */}
       </nav>
     </div>
   </header>
