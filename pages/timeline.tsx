@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import Layout from "../components/layout";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import styles from "./timeline.module.css";
+import styles from "./timeline.module.scss";
 const Timeline: NextPage = () => {
   return (
     <Layout>
@@ -42,7 +42,7 @@ const Timeline: NextPage = () => {
           </ul>
         </div>
       </main>
-      <Footer/>
+      <Footer />
     </Layout>
   );
 };
