@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import Script from "next/script";
 import Image from "next/image";
-import styles from "./index.module.css";
+import styles from "./index.module.scss";
 import Layout from "../components/layout";
 import Header from "../components/header";
 import Footer from "../components/footer";

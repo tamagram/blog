@@ -4,7 +4,7 @@ import Link from "next/link";
 import Layout from "../components/layout";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import styles from "./blog.module.css";
+import styles from "./blog.module.scss";
 import LINK from "../types/link";
 import useSWR from "swr";
 
