@@ -125,7 +125,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     const ss = ("0" + parsedDate.getSeconds()).slice(-2);
     const dateStr = `${year}/${month}/${day}/${hh}${mm}${ss}`;
     return `https://tamagram.hatenablog.com/entry/${dateStr}`;
-  }
+  };
   const getHatenaPost = async () => {
     const data = await axios
       .get(hatenaUrl + "/" + pid, {

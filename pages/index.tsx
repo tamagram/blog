@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import Script from "next/script"
+import Script from "next/script";
 import Image from "next/image";
 import styles from "./index.module.css";
 import Layout from "../components/layout";
@@ -24,7 +24,12 @@ const Home: NextPage = () => (
           <div className={styles.main__section__avatar_name}>tama</div>
           <div className={styles.main__section__icons}>
             <a href="https://github.com/tamagram">
-              <Image src="/github-icon.svg" alt="github" width={40} height={40} />
+              <Image
+                src="/github-icon.svg"
+                alt="github"
+                width={40}
+                height={40}
+              />
             </a>
             <a href="https://twitter.com/tamagrm">
               <Image
@@ -38,7 +43,12 @@ const Home: NextPage = () => (
               <Image src="/zenn-icon.svg" alt="github" width={40} height={40} />
             </a>
             <a href="https://tamagram.hatenablog.com/">
-              <Image src="/hatena-icon.svg" alt="github" width={40} height={40} />
+              <Image
+                src="/hatena-icon.svg"
+                alt="github"
+                width={40}
+                height={40}
+              />
             </a>
           </div>
         </section>
@@ -68,7 +78,9 @@ const Home: NextPage = () => (
     </Layout>
     {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
     <Script
-      src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID ?? ''}`}
+      src={`https://www.googletagmanager.com/gtag/js?id=${
+        process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID ?? ""
+      }`}
       strategy="afterInteractive"
     />
     <Script id="google-analytics" strategy="afterInteractive">
@@ -81,7 +93,6 @@ const Home: NextPage = () => (
         `}
     </Script>
   </>
-
 );
 
 export default Home;
