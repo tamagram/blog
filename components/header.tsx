@@ -9,6 +9,7 @@ type ROUTE = {
 const AboutPath = "/";
 const BlogPath = "/blog";
 const PortfolioPath = "/portfolio";
+const TimelinePath = "/timeline";
 
 const Header: React.FC<ROUTE> = (props) => (
   <header className={styles.header}>
@@ -52,6 +53,19 @@ const Header: React.FC<ROUTE> = (props) => (
           </a>
         </Link>
       </li> */}
+      <li className={styles.header__nav__li}>
+        <Link href="/timeline">
+          <a
+            className={
+              props.path === TimelinePath
+                ? styles.header__nav__li__selected_a
+                : styles.header__nav__li__a
+            }
+          >
+            Timeline
+          </a>
+        </Link>
+      </li>
     </nav>
     <div className={styles.header__div_menu}>
       <a href="#light_box">
