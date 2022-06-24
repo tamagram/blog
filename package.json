@@ -3,6 +3,7 @@
   "scripts": {
     "dev": "next dev",
     "lint": "next lint",
+    "fmt": "prettier --write .",
     "build": "next build",
     "start": "next start",
     "test": "jest",
