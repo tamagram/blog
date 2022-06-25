@@ -8,6 +8,7 @@ import Link from "next/link";
 import LINK from "../types/link";
 import axios from "axios";
 import { XMLParser } from "fast-xml-parser";
+import { works } from "../data/work";
 
 import TurndownService from "turndown";
 
@@ -25,31 +26,51 @@ type PROPS = {
 
 const Timeline: NextPage<PROPS> = (props) => {
   const linksLi = (links: LINK[]) =>
-    links.map((link) => (
-      <li key={link.id} className={styles.container__item}>
-        <div className={styles.container__top}>
-          <div className={styles.container__circle}></div>
-          <div className={styles.container__title}>
-            Published on {link.createdAt}
-          </div>
-        </div>
-        <Link href={link.local}>
-          <a>
-            <div className={styles.container__desc}>
-              <div className={styles.container__desc__img}>
-                <Image
-                  src={`/${link.reference}-icon.svg`}
-                  alt="icon"
-                  width={36}
-                  height={36}
-                />
+    links.map((link) => {
+      if (link.reference === "work") {
+        return (
+          <li key={link.id} className={styles.container__item}>
+            <div className={styles.container__top}>
+              <div className={styles.container__circle}></div>
+              <div className={styles.container__title}>
+                Worked there until {link.createdAt}
               </div>
-              {link.title}
             </div>
-          </a>
-        </Link>
-      </li>
-    ));
+            <Link href={link.local}>
+              <a>
+                <div className={styles.container__desc}>{link.title}</div>
+              </a>
+            </Link>
+          </li>
+        );
+      } else {
+        return (
+          <li key={link.id} className={styles.container__item}>
+            <div className={styles.container__top}>
+              <div className={styles.container__circle}></div>
+              <div className={styles.container__title}>
+                Published on {link.createdAt}
+              </div>
+            </div>
+            <Link href={link.local}>
+              <a>
+                <div className={styles.container__desc}>
+                  <div className={styles.container__desc__img}>
+                    <Image
+                      src={`/${link.reference}-icon.svg`}
+                      alt="icon"
+                      width={36}
+                      height={36}
+                    />
+                  </div>
+                  {link.title}
+                </div>
+              </a>
+            </Link>
+          </li>
+        );
+      }
+    });
   const yearUl = () => {
     const links = Object.entries(props.links).sort(
       (a, b) => Number(b[0]) - Number(a[0])
@@ -156,7 +177,7 @@ export const getStaticProps: GetStaticProps = async () => {
     return links;
   };
   let links = await getZennLinks();
-  links = links.concat(await getHatenaLinks());
+  links = links.concat(await getHatenaLinks(), works);
   links = JSON.parse(JSON.stringify(links));
   links.sort(
     (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
