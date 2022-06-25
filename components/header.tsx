@@ -41,6 +41,10 @@ const Header: React.FC<ROUTE> = (props) => (
         </Link>
       </li>
     </nav>
+
+    {
+        // responsive
+    }
     <div className={styles.header__div_menu}>
       <a href="#light_box">
         <Image src="/menu.svg" alt="menu" width={40} height={40} />
@@ -54,7 +58,20 @@ const Header: React.FC<ROUTE> = (props) => (
       </div>
       <nav className={styles.header__div_light_box__nav}>
         <li className={styles.header__div_light_box__nav__li}>
-          <Link href="/">
+          <Link href={TimelinePath}>
+            <a
+              className={
+                props.path === TimelinePath
+                  ? styles.header__div_light_box__nav__li__selected_a
+                  : styles.header__div_light_box__nav__li__a
+              }
+            >
+              Timeline
+            </a>
+          </Link>
+        </li>
+        <li className={styles.header__div_light_box__nav__li}>
+          <Link href={AboutPath}>
             <a
               className={
                 props.path === AboutPath
@@ -66,32 +83,6 @@ const Header: React.FC<ROUTE> = (props) => (
             </a>
           </Link>
         </li>
-        <li className={styles.header__div_light_box__nav__li}>
-          <Link href="/blog">
-            <a
-              className={
-                props.path === BlogPath
-                  ? styles.header__div_light_box__nav__li__selected_a
-                  : styles.header__div_light_box__nav__li__a
-              }
-            >
-              Blog
-            </a>
-          </Link>
-        </li>
-        {/* <li className={styles.header__div_light_box__nav__li}>
-          <Link href="/portfolio">
-            <a
-              className={
-                props.path === PortfolioPath
-                  ? styles.header__div_light_box__nav__li__selected_a
-                  : styles.header__div_light_box__nav__li__a
-              }
-            >
-              Portfolio
-            </a>
-          </Link>
-        </li> */}
       </nav>
     </div>
   </header>
