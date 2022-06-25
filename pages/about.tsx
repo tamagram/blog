@@ -10,6 +10,7 @@ const About: NextPage = () => (
     <Layout>
       <Header path="/about" />
       <main className={styles.main}>
+        <h1 className={styles.pageName}>About</h1>
         <section className={styles.main__section__avatars}>
           <div>
             <Image
@@ -23,12 +24,14 @@ const About: NextPage = () => (
           <div className={styles.main__section__avatar_name}>tama</div>
           <div className={styles.main__section__icons}>
             <a href="https://github.com/tamagram">
-              <Image
-                src="/github-icon.svg"
-                alt="github"
-                width={40}
-                height={40}
-              />
+              <div>
+                <Image
+                  src="/github-icon.svg"
+                  alt="github"
+                  width={40}
+                  height={40}
+                />
+              </div>
             </a>
             <a href="https://twitter.com/tamagrm">
               <Image
@@ -53,10 +56,13 @@ const About: NextPage = () => (
           <div className={styles.main__section__profiles__div}>
             <h2># Profile</h2>
             <p>
-            Web開発やセキュリティに興味があって勉強しています<br/>
-            ISC 情報セキュリティ学科 3年 <br/>
-            <a href="https://isc-makeit.github.io/Make-IT-homepage/">MakeIT</a>と<a href="https://ipfactory.org/">IPFactory</a>に所属
-
+              Web開発やセキュリティに興味があって勉強しています
+              <br />
+              ISC 情報セキュリティ学科 3年 <br />
+              <a href="https://isc-makeit.github.io/Make-IT-homepage/">
+                MakeIT
+              </a>
+              と<a href="https://ipfactory.org/">IPFactory</a>に所属
             </p>
           </div>
         </section>

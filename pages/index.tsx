@@ -72,6 +72,7 @@ const Timeline: NextPage<PROPS> = (props) => {
     <Layout>
       <Header path="/"></Header>
       <main className={styles.main}>
+        <h1 className={styles.pageName}>Timeline</h1>
         <div>
           {yearUl()}
           {

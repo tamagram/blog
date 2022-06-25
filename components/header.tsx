@@ -43,7 +43,7 @@ const Header: React.FC<ROUTE> = (props) => (
     </nav>
 
     {
-        // responsive
+      // responsive
     }
     <div className={styles.header__div_menu}>
       <a href="#light_box">
