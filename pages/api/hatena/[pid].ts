@@ -11,14 +11,14 @@ const hatenaUrl =
 const getHatenaUrl = (date) => {
   const parsedDate = new Date(date);
   const year = parsedDate.getFullYear();
-  const month =("0" + (parsedDate.getMonth() + 1)).slice(-2);
+  const month = ("0" + (parsedDate.getMonth() + 1)).slice(-2);
   const day = ("0" + parsedDate.getDate()).slice(-2);
   const hh = ("0" + parsedDate.getHours()).slice(-2);
   const mm = ("0" + parsedDate.getMinutes()).slice(-2);
   const ss = ("0" + parsedDate.getSeconds()).slice(-2);
   const dateStr = `${year}/${month}/${day}/${hh}${mm}${ss}`;
   return `https://tamagram.hatenablog.com/entry/${dateStr}`;
-}
+};
 
 const handler = async (req, res) => {
   try {

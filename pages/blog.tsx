@@ -4,17 +4,14 @@ import Link from "next/link";
 import Layout from "../components/layout";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import styles from "./blog.module.css";
+import styles from "./blog.module.scss";
 import LINK from "../types/link";
-import useSWR from 'swr';
+import useSWR from "swr";
 
-const fetcher = (url: string) => fetch(url).then(res => res.json())
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const Blog: NextPage = () => {
-  const { data, error } = useSWR<LINK[]>(
-    "api/links",
-    fetcher
-  );
+  const { data, error } = useSWR<LINK[]>("api/links", fetcher);
 
   const linksLi = () =>
     data.map((link) => (
@@ -36,26 +33,28 @@ const Blog: NextPage = () => {
         </Link>
       </li>
     ));
-  if (error) return (
-    <Layout>
-      <Header path="/blog" />
-      <main className={styles.main}>
-        <h1 className={styles.main__heading_1}>Posts</h1>
-        An error has occurred.
-      </main>
-      <Footer />
-    </Layout>
-  );
-  if (!data) return (
-    <Layout>
-      <Header path="/blog" />
-      <main className={styles.main}>
-        <h1 className={styles.main__heading_1}>Posts</h1>
-        Loading...
-      </main>
-      <Footer />
-    </Layout>
-  );
+  if (error)
+    return (
+      <Layout>
+        <Header path="/blog" />
+        <main className={styles.main}>
+          <h1 className={styles.main__heading_1}>Posts</h1>
+          An error has occurred.
+        </main>
+        <Footer />
+      </Layout>
+    );
+  if (!data)
+    return (
+      <Layout>
+        <Header path="/blog" />
+        <main className={styles.main}>
+          <h1 className={styles.main__heading_1}>Posts</h1>
+          Loading...
+        </main>
+        <Footer />
+      </Layout>
+    );
   return (
     <Layout>
       <Header path="/blog" />
@@ -67,6 +66,5 @@ const Blog: NextPage = () => {
     </Layout>
   );
 };
-
 
 export default Blog;

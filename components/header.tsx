@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
-import styles from "./header.module.css";
+import styles from "./header.module.scss";
 
 type ROUTE = {
   path: string;
 };
 
-const AboutPath = "/";
+const TimelinePath = "/";
+const AboutPath = "/about";
 const BlogPath = "/blog";
 const PortfolioPath = "/portfolio";
 
@@ -14,7 +15,20 @@ const Header: React.FC<ROUTE> = (props) => (
   <header className={styles.header}>
     <nav className={styles.header__nav}>
       <li className={styles.header__nav__li}>
-        <Link href="/">
+        <Link href={TimelinePath}>
+          <a
+            className={
+              props.path === TimelinePath
+                ? styles.header__nav__li__selected_a
+                : styles.header__nav__li__a
+            }
+          >
+            Timeline
+          </a>
+        </Link>
+      </li>
+      <li className={styles.header__nav__li}>
+        <Link href={AboutPath}>
           <a
             className={
               props.path === AboutPath
@@ -26,33 +40,11 @@ const Header: React.FC<ROUTE> = (props) => (
           </a>
         </Link>
       </li>
-      <li className={styles.header__nav__li}>
-        <Link href="/blog">
-          <a
-            className={
-              props.path === BlogPath
-                ? styles.header__nav__li__selected_a
-                : styles.header__nav__li__a
-            }
-          >
-            Blog
-          </a>
-        </Link>
-      </li>
-      {/* <li className={styles.header__nav__li}>
-        <Link href="/portfolio">
-          <a
-            className={
-              props.path === PortfolioPath
-                ? styles.header__nav__li__selected_a
-                : styles.header__nav__li__a
-            }
-          >
-            Product
-          </a>
-        </Link>
-      </li> */}
     </nav>
+
+    {
+      // responsive
+    }
     <div className={styles.header__div_menu}>
       <a href="#light_box">
         <Image src="/menu.svg" alt="menu" width={40} height={40} />
@@ -66,7 +58,20 @@ const Header: React.FC<ROUTE> = (props) => (
       </div>
       <nav className={styles.header__div_light_box__nav}>
         <li className={styles.header__div_light_box__nav__li}>
-          <Link href="/">
+          <Link href={TimelinePath}>
+            <a
+              className={
+                props.path === TimelinePath
+                  ? styles.header__div_light_box__nav__li__selected_a
+                  : styles.header__div_light_box__nav__li__a
+              }
+            >
+              Timeline
+            </a>
+          </Link>
+        </li>
+        <li className={styles.header__div_light_box__nav__li}>
+          <Link href={AboutPath}>
             <a
               className={
                 props.path === AboutPath
@@ -78,32 +83,6 @@ const Header: React.FC<ROUTE> = (props) => (
             </a>
           </Link>
         </li>
-        <li className={styles.header__div_light_box__nav__li}>
-          <Link href="/blog">
-            <a
-              className={
-                props.path === BlogPath
-                  ? styles.header__div_light_box__nav__li__selected_a
-                  : styles.header__div_light_box__nav__li__a
-              }
-            >
-              Blog
-            </a>
-          </Link>
-        </li>
-        {/* <li className={styles.header__div_light_box__nav__li}>
-          <Link href="/portfolio">
-            <a
-              className={
-                props.path === PortfolioPath
-                  ? styles.header__div_light_box__nav__li__selected_a
-                  : styles.header__div_light_box__nav__li__a
-              }
-            >
-              Portfolio
-            </a>
-          </Link>
-        </li> */}
       </nav>
     </div>
   </header>
