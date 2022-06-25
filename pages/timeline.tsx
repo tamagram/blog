@@ -4,6 +4,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import styles from "./timeline.module.scss";
 
+import Image from "next/image";
 import LINK from "../types/link";
 import axios from "axios";
 import { XMLParser } from "fast-xml-parser";
@@ -32,7 +33,17 @@ const Timeline: NextPage<PROPS> = (props) => {
             Published on {link.createdAt}
           </div>
         </div>
-        <div className={styles.container__desc}>{link.title}</div>
+        <div className={styles.container__desc}>
+          <div className={styles.container__desc__img}>
+            <Image
+              src={`/${link.reference}-icon.svg`}
+              alt="icon"
+              width={36}
+              height={36}
+            />
+          </div>
+          {link.title}
+        </div>
       </li>
     ));
   const yearUl = () => {
@@ -145,16 +156,16 @@ export const getStaticProps: GetStaticProps = async () => {
   links.sort(
     (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
   );
+  // console.log(links);
   let yearLinks = {};
-  for (const value of links) {
-    let year = new Date(value.createdAt).getFullYear();
+  for (const link of links) {
+    let year = new Date(link.createdAt).getFullYear();
     if (year in yearLinks) {
-      yearLinks[year].push(value);
+      yearLinks[year].push(link);
     } else {
-      yearLinks[year] = [];
+      yearLinks[year] = [link];
     }
   }
-  console.log(yearLinks);
   return {
     props: {
       links: yearLinks,
