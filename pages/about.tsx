@@ -1,12 +1,11 @@
 import { NextPage } from "next";
-import Script from "next/script";
 import Image from "next/image";
 import styles from "./about.module.scss";
 import Layout from "../components/layout";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-const Home: NextPage = () => (
+const About: NextPage = () => (
   <>
     <Layout>
       <Header path="/about" />
@@ -76,23 +75,7 @@ const Home: NextPage = () => (
       </main>
       <Footer />
     </Layout>
-    {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
-    <Script
-      src={`https://www.googletagmanager.com/gtag/js?id=${
-        process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID ?? ""
-      }`}
-      strategy="afterInteractive"
-    />
-    <Script id="google-analytics" strategy="afterInteractive">
-      {`
-          window.dataLayer = window.dataLayer || [];
-    function gtag(){window.dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'GA_MEASUREMENT_ID');
-        `}
-    </Script>
   </>
 );
 
-export default Home;
+export default About;

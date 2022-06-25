@@ -26,7 +26,7 @@ type PROPS = {
 const Timeline: NextPage<PROPS> = (props) => {
   const linksLi = (links: LINK[]) =>
     links.map((link) => (
-      <li className={styles.container__item}>
+      <li key={link.id} className={styles.container__item}>
         <div className={styles.container__top}>
           <div className={styles.container__circle}></div>
           <div className={styles.container__title}>
