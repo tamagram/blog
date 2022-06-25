@@ -3,6 +3,7 @@
   "scripts": {
     "dev": "next dev",
     "lint": "next lint",
+    "fmt": "prettier --write .",
     "build": "next build",
     "start": "next start",
     "test": "jest",
@@ -28,18 +29,21 @@
     "@testing-library/jest-dom": "5.15.1",
     "@testing-library/react": "12.1.2",
     "@testing-library/user-event": "13.5.0",
+    "@types/gtag.js": "^0.0.10",
     "@types/node": "^16.11.10",
     "@types/react": "^17.0.37",
     "@types/react-test-renderer": "^17.0.1",
     "@types/turndown": "^5.0.1",
-    "babel-jest": "27.3.1",
+    "babel-jest": "28.1.1",
     "eslint": "7.32.0",
     "eslint-config-next": "latest",
     "eslint-plugin-testing-library": "5.0.0",
     "identity-obj-proxy": "3.0.0",
     "jest": "27.3.1",
     "next-page-tester": "^0.30.0",
+    "prettier": "2.7.1",
     "react-test-renderer": "17.0.2",
+    "sass": "^1.53.0",
     "typescript": "^4.5.2"
   }
 }
