@@ -1,5 +1,5 @@
 import Head from "next/head";
-import styles from "./layout.module.css";
+import styles from "./layout.module.scss";
 const Layout: React.FC = ({ children }) => (
   <div className={styles.layout}>
     <Head>
