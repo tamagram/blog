@@ -50,25 +50,13 @@ const About: NextPage = () => (
               />
             </a>
           </div>
-        </section>
-        <section className={styles.main__section__profiles}>
           <div className={styles.main__section__profiles__div}>
             <h2># Profile</h2>
             <p>
-              **Name** <br />
-              Masahiro Tajima <br />
-              **Occupation** <br />
-              Student <br />
-              **Club** <br />
-              IPFactory <br />
-              MakeIT <br />
-            </p>
-            <h2># Interest</h2>
-            <p>
-              **WebDev** <br />
-              React <br />
-              **Cloud** <br />
-              AWS <br />
+            Web開発やセキュリティに興味があって勉強しています<br/>
+            ISC 情報セキュリティ学科 3年 <br/>
+            <a href="https://isc-makeit.github.io/Make-IT-homepage/">MakeIT</a>と<a href="https://ipfactory.org/">IPFactory</a>に所属
+
             </p>
           </div>
         </section>
