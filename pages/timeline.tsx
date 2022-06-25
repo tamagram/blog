@@ -3,8 +3,8 @@ import Layout from "../components/layout";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import styles from "./timeline.module.scss";
-
 import Image from "next/image";
+import Link from "next/link";
 import LINK from "../types/link";
 import axios from "axios";
 import { XMLParser } from "fast-xml-parser";
@@ -33,17 +33,21 @@ const Timeline: NextPage<PROPS> = (props) => {
             Published on {link.createdAt}
           </div>
         </div>
-        <div className={styles.container__desc}>
-          <div className={styles.container__desc__img}>
-            <Image
-              src={`/${link.reference}-icon.svg`}
-              alt="icon"
-              width={36}
-              height={36}
-            />
-          </div>
-          {link.title}
-        </div>
+        <Link href={link.local}>
+          <a>
+            <div className={styles.container__desc}>
+              <div className={styles.container__desc__img}>
+                <Image
+                  src={`/${link.reference}-icon.svg`}
+                  alt="icon"
+                  width={36}
+                  height={36}
+                />
+              </div>
+              {link.title}
+            </div>
+          </a>
+        </Link>
       </li>
     ));
   const yearUl = () => {
