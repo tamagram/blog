@@ -6,55 +6,16 @@ type ROUTE = {
   path: string;
 };
 
-const AboutPath = "/";
+const TimelinePath = "/";
+const AboutPath = "/about";
 const BlogPath = "/blog";
 const PortfolioPath = "/portfolio";
-const TimelinePath = "/timeline";
 
 const Header: React.FC<ROUTE> = (props) => (
   <header className={styles.header}>
     <nav className={styles.header__nav}>
       <li className={styles.header__nav__li}>
-        <Link href="/">
-          <a
-            className={
-              props.path === AboutPath
-                ? styles.header__nav__li__selected_a
-                : styles.header__nav__li__a
-            }
-          >
-            About
-          </a>
-        </Link>
-      </li>
-      <li className={styles.header__nav__li}>
-        <Link href="/blog">
-          <a
-            className={
-              props.path === BlogPath
-                ? styles.header__nav__li__selected_a
-                : styles.header__nav__li__a
-            }
-          >
-            Blog
-          </a>
-        </Link>
-      </li>
-      {/* <li className={styles.header__nav__li}>
-        <Link href="/portfolio">
-          <a
-            className={
-              props.path === PortfolioPath
-                ? styles.header__nav__li__selected_a
-                : styles.header__nav__li__a
-            }
-          >
-            Product
-          </a>
-        </Link>
-      </li> */}
-      <li className={styles.header__nav__li}>
-        <Link href="/timeline">
+        <Link href={TimelinePath}>
           <a
             className={
               props.path === TimelinePath
@@ -63,6 +24,19 @@ const Header: React.FC<ROUTE> = (props) => (
             }
           >
             Timeline
+          </a>
+        </Link>
+      </li>
+      <li className={styles.header__nav__li}>
+        <Link href={AboutPath}>
+          <a
+            className={
+              props.path === AboutPath
+                ? styles.header__nav__li__selected_a
+                : styles.header__nav__li__a
+            }
+          >
+            About
           </a>
         </Link>
       </li>
